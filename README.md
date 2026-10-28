@@ -43,10 +43,10 @@ curl -sS -o en1.json https://raw.githubusercontent.com/openfootball/football.jso
 
 # crunch the numbers, then build the page
 python3 model.py data.json en1.json
-python3 build.py data.json template.html survivor.html
+python3 build.py data.json template.html index.html
 ```
 
-Open `survivor.html` in a browser and you're done.
+Open `index.html` in a browser and you're done.
 
 ### The weekly ritual
 
@@ -68,7 +68,7 @@ Then run the three commands above.
 | `template.html` | The good-looking part |
 | `build.py` | Pours the numbers into the page |
 | `data.json` | This week's results from the model |
-| `survivor.html` | The finished page |
+| `index.html` | The finished page |
 
 ## FAQ
 
