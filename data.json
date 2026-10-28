@@ -1975,6 +1975,1523 @@
   ],
   "runs": 60
  },
+ "engine": {
+  "round": 9,
+  "last": 19,
+  "teams": [
+   "Arsenal",
+   "Villa",
+   "Bournemouth",
+   "Brentford",
+   "Brighton",
+   "Chelsea",
+   "Coventry",
+   "Palace",
+   "Everton",
+   "Fulham",
+   "Hull",
+   "Ipswich",
+   "Leeds",
+   "Liverpool",
+   "Man City",
+   "Man Utd",
+   "Newcastle",
+   "Forest",
+   "Sunderland",
+   "Spurs"
+  ],
+  "h": 0.2721633085479397,
+  "c": 0.551245735151333,
+  "homeShift": 0.12,
+  "noise": 0.15,
+  "runs": 60,
+  "ratings": {
+   "Arsenal": 1.0334657687085114,
+   "Villa": -0.08457401650623944,
+   "Bournemouth": -0.0703889117810424,
+   "Brentford": 0.12912304200350264,
+   "Brighton": 0.28580666403861393,
+   "Chelsea": 0.5094458180671387,
+   "Coventry": -0.7209554341922192,
+   "Palace": -0.51459016667716,
+   "Everton": -0.03792042757717799,
+   "Fulham": -0.293471128717097,
+   "Hull": -0.7664968777788427,
+   "Ipswich": -0.5445493683153393,
+   "Leeds": -0.03206875497453435,
+   "Liverpool": 0.4324413701032151,
+   "Man City": 0.9061596341599618,
+   "Man Utd": 0.1423167803904683,
+   "Newcastle": -0.07617948834806214,
+   "Forest": -0.11033626749021837,
+   "Sunderland": -0.32789332465760374,
+   "Spurs": 0.14066503247716014
+  },
+  "fixtures": {
+   "Arsenal": [
+    {
+     "round": 9,
+     "opp": "Liverpool",
+     "home": false,
+     "date": "2026-11-01"
+    },
+    {
+     "round": 10,
+     "opp": "Hull",
+     "home": true,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Newcastle",
+     "home": false,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Man City",
+     "home": true,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Brentford",
+     "home": false,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Spurs",
+     "home": false,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Bournemouth",
+     "home": true,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Man Utd",
+     "home": true,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Palace",
+     "home": false,
+     "date": "2026-12-27"
+    },
+    {
+     "round": 18,
+     "opp": "Fulham",
+     "home": false,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Ipswich",
+     "home": true,
+     "date": "2027-01-02"
+    }
+   ],
+   "Villa": [
+    {
+     "round": 9,
+     "opp": "Fulham",
+     "home": true,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Man Utd",
+     "home": false,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Sunderland",
+     "home": true,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Ipswich",
+     "home": false,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Everton",
+     "home": true,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Palace",
+     "home": true,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Coventry",
+     "home": false,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Chelsea",
+     "home": false,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Leeds",
+     "home": true,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Liverpool",
+     "home": true,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Bournemouth",
+     "home": false,
+     "date": "2027-01-02"
+    }
+   ],
+   "Bournemouth": [
+    {
+     "round": 9,
+     "opp": "Leeds",
+     "home": true,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Ipswich",
+     "home": false,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Forest",
+     "home": true,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Fulham",
+     "home": false,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Brighton",
+     "home": true,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Hull",
+     "home": true,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Arsenal",
+     "home": false,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Coventry",
+     "home": true,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Spurs",
+     "home": false,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Palace",
+     "home": false,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Villa",
+     "home": true,
+     "date": "2027-01-02"
+    }
+   ],
+   "Brentford": [
+    {
+     "round": 9,
+     "opp": "Forest",
+     "home": true,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Brighton",
+     "home": false,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Everton",
+     "home": true,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Man Utd",
+     "home": false,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Arsenal",
+     "home": true,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Man City",
+     "home": true,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Fulham",
+     "home": false,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Newcastle",
+     "home": true,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Ipswich",
+     "home": false,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Coventry",
+     "home": false,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Palace",
+     "home": true,
+     "date": "2027-01-02"
+    }
+   ],
+   "Brighton": [
+    {
+     "round": 9,
+     "opp": "Man City",
+     "home": false,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Brentford",
+     "home": true,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Hull",
+     "home": false,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Newcastle",
+     "home": true,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Bournemouth",
+     "home": false,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Forest",
+     "home": false,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Everton",
+     "home": true,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Ipswich",
+     "home": true,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Fulham",
+     "home": false,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Spurs",
+     "home": false,
+     "date": "2026-12-29"
+    },
+    {
+     "round": 19,
+     "opp": "Man Utd",
+     "home": true,
+     "date": "2027-01-02"
+    }
+   ],
+   "Chelsea": [
+    {
+     "round": 9,
+     "opp": "Man Utd",
+     "home": true,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Sunderland",
+     "home": false,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Leeds",
+     "home": true,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Forest",
+     "home": false,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Palace",
+     "home": true,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Liverpool",
+     "home": true,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Man City",
+     "home": false,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Villa",
+     "home": true,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Coventry",
+     "home": false,
+     "date": "2026-12-27"
+    },
+    {
+     "round": 18,
+     "opp": "Ipswich",
+     "home": false,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Newcastle",
+     "home": true,
+     "date": "2027-01-03"
+    }
+   ],
+   "Coventry": [
+    {
+     "round": 9,
+     "opp": "Sunderland",
+     "home": true,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Everton",
+     "home": false,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Palace",
+     "home": true,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Leeds",
+     "home": false,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Ipswich",
+     "home": true,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Man Utd",
+     "home": false,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Villa",
+     "home": true,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Bournemouth",
+     "home": false,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Chelsea",
+     "home": true,
+     "date": "2026-12-27"
+    },
+    {
+     "round": 18,
+     "opp": "Brentford",
+     "home": true,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Liverpool",
+     "home": false,
+     "date": "2027-01-02"
+    }
+   ],
+   "Palace": [
+    {
+     "round": 9,
+     "opp": "Spurs",
+     "home": false,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Liverpool",
+     "home": true,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Coventry",
+     "home": false,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Hull",
+     "home": true,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Chelsea",
+     "home": false,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Villa",
+     "home": false,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Man Utd",
+     "home": true,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Sunderland",
+     "home": false,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Arsenal",
+     "home": true,
+     "date": "2026-12-27"
+    },
+    {
+     "round": 18,
+     "opp": "Bournemouth",
+     "home": true,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Brentford",
+     "home": false,
+     "date": "2027-01-02"
+    }
+   ],
+   "Everton": [
+    {
+     "round": 9,
+     "opp": "Newcastle",
+     "home": false,
+     "date": "2026-11-02"
+    },
+    {
+     "round": 10,
+     "opp": "Coventry",
+     "home": true,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Brentford",
+     "home": false,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Liverpool",
+     "home": true,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Villa",
+     "home": false,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Fulham",
+     "home": true,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Brighton",
+     "home": false,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Forest",
+     "home": false,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Sunderland",
+     "home": true,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Man City",
+     "home": true,
+     "date": "2026-12-29"
+    },
+    {
+     "round": 19,
+     "opp": "Leeds",
+     "home": false,
+     "date": "2027-01-01"
+    }
+   ],
+   "Fulham": [
+    {
+     "round": 9,
+     "opp": "Villa",
+     "home": false,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Newcastle",
+     "home": true,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Man City",
+     "home": false,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Bournemouth",
+     "home": true,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Spurs",
+     "home": false,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Everton",
+     "home": false,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Brentford",
+     "home": true,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Leeds",
+     "home": false,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Brighton",
+     "home": true,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Arsenal",
+     "home": true,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Forest",
+     "home": false,
+     "date": "2027-01-02"
+    }
+   ],
+   "Hull": [
+    {
+     "round": 9,
+     "opp": "Ipswich",
+     "home": true,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Arsenal",
+     "home": false,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Brighton",
+     "home": true,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Palace",
+     "home": false,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Forest",
+     "home": true,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Bournemouth",
+     "home": false,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Spurs",
+     "home": true,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Man City",
+     "home": false,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Liverpool",
+     "home": true,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Leeds",
+     "home": true,
+     "date": "2026-12-29"
+    },
+    {
+     "round": 19,
+     "opp": "Sunderland",
+     "home": false,
+     "date": "2027-01-02"
+    }
+   ],
+   "Ipswich": [
+    {
+     "round": 9,
+     "opp": "Hull",
+     "home": false,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Bournemouth",
+     "home": true,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Spurs",
+     "home": false,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Villa",
+     "home": true,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Coventry",
+     "home": false,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Leeds",
+     "home": false,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Newcastle",
+     "home": true,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Brighton",
+     "home": false,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Brentford",
+     "home": true,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Chelsea",
+     "home": true,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Arsenal",
+     "home": false,
+     "date": "2027-01-02"
+    }
+   ],
+   "Leeds": [
+    {
+     "round": 9,
+     "opp": "Bournemouth",
+     "home": false,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Spurs",
+     "home": true,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Chelsea",
+     "home": false,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Coventry",
+     "home": true,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Man City",
+     "home": false,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Ipswich",
+     "home": true,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Liverpool",
+     "home": false,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Fulham",
+     "home": true,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Villa",
+     "home": false,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Hull",
+     "home": false,
+     "date": "2026-12-29"
+    },
+    {
+     "round": 19,
+     "opp": "Everton",
+     "home": true,
+     "date": "2027-01-01"
+    }
+   ],
+   "Liverpool": [
+    {
+     "round": 9,
+     "opp": "Arsenal",
+     "home": true,
+     "date": "2026-11-01"
+    },
+    {
+     "round": 10,
+     "opp": "Palace",
+     "home": false,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Man Utd",
+     "home": true,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Everton",
+     "home": false,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Sunderland",
+     "home": true,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Chelsea",
+     "home": false,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Leeds",
+     "home": true,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Spurs",
+     "home": true,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Hull",
+     "home": false,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Villa",
+     "home": false,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Coventry",
+     "home": true,
+     "date": "2027-01-02"
+    }
+   ],
+   "Man City": [
+    {
+     "round": 9,
+     "opp": "Brighton",
+     "home": true,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Forest",
+     "home": false,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Fulham",
+     "home": true,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Arsenal",
+     "home": false,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Leeds",
+     "home": true,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Brentford",
+     "home": false,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Chelsea",
+     "home": true,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Hull",
+     "home": true,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Newcastle",
+     "home": false,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Everton",
+     "home": false,
+     "date": "2026-12-29"
+    },
+    {
+     "round": 19,
+     "opp": "Spurs",
+     "home": true,
+     "date": "2027-01-03"
+    }
+   ],
+   "Man Utd": [
+    {
+     "round": 9,
+     "opp": "Chelsea",
+     "home": false,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Villa",
+     "home": true,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Liverpool",
+     "home": false,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Brentford",
+     "home": true,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Newcastle",
+     "home": false,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Coventry",
+     "home": true,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Palace",
+     "home": false,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Arsenal",
+     "home": false,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Forest",
+     "home": true,
+     "date": "2026-12-27"
+    },
+    {
+     "round": 18,
+     "opp": "Sunderland",
+     "home": true,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Brighton",
+     "home": false,
+     "date": "2027-01-02"
+    }
+   ],
+   "Newcastle": [
+    {
+     "round": 9,
+     "opp": "Everton",
+     "home": true,
+     "date": "2026-11-02"
+    },
+    {
+     "round": 10,
+     "opp": "Fulham",
+     "home": false,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Arsenal",
+     "home": true,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Brighton",
+     "home": false,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Man Utd",
+     "home": true,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Sunderland",
+     "home": true,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Ipswich",
+     "home": false,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Brentford",
+     "home": false,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Man City",
+     "home": true,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Forest",
+     "home": true,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Chelsea",
+     "home": false,
+     "date": "2027-01-03"
+    }
+   ],
+   "Forest": [
+    {
+     "round": 9,
+     "opp": "Brentford",
+     "home": false,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Man City",
+     "home": true,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Bournemouth",
+     "home": false,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Chelsea",
+     "home": true,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Hull",
+     "home": false,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Brighton",
+     "home": true,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Sunderland",
+     "home": false,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Everton",
+     "home": true,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Man Utd",
+     "home": false,
+     "date": "2026-12-27"
+    },
+    {
+     "round": 18,
+     "opp": "Newcastle",
+     "home": false,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Fulham",
+     "home": true,
+     "date": "2027-01-02"
+    }
+   ],
+   "Sunderland": [
+    {
+     "round": 9,
+     "opp": "Coventry",
+     "home": false,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Chelsea",
+     "home": true,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Villa",
+     "home": false,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Spurs",
+     "home": true,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Liverpool",
+     "home": false,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Newcastle",
+     "home": false,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Forest",
+     "home": true,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Palace",
+     "home": true,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Everton",
+     "home": false,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Man Utd",
+     "home": false,
+     "date": "2026-12-30"
+    },
+    {
+     "round": 19,
+     "opp": "Hull",
+     "home": true,
+     "date": "2027-01-02"
+    }
+   ],
+   "Spurs": [
+    {
+     "round": 9,
+     "opp": "Palace",
+     "home": true,
+     "date": "2026-10-31"
+    },
+    {
+     "round": 10,
+     "opp": "Leeds",
+     "home": false,
+     "date": "2026-11-07"
+    },
+    {
+     "round": 11,
+     "opp": "Ipswich",
+     "home": true,
+     "date": "2026-11-21"
+    },
+    {
+     "round": 12,
+     "opp": "Sunderland",
+     "home": false,
+     "date": "2026-11-28"
+    },
+    {
+     "round": 13,
+     "opp": "Fulham",
+     "home": true,
+     "date": "2026-12-02"
+    },
+    {
+     "round": 14,
+     "opp": "Arsenal",
+     "home": true,
+     "date": "2026-12-05"
+    },
+    {
+     "round": 15,
+     "opp": "Hull",
+     "home": false,
+     "date": "2026-12-12"
+    },
+    {
+     "round": 16,
+     "opp": "Liverpool",
+     "home": false,
+     "date": "2026-12-19"
+    },
+    {
+     "round": 17,
+     "opp": "Bournemouth",
+     "home": true,
+     "date": "2026-12-26"
+    },
+    {
+     "round": 18,
+     "opp": "Brighton",
+     "home": true,
+     "date": "2026-12-29"
+    },
+    {
+     "round": 19,
+     "opp": "Man City",
+     "home": false,
+     "date": "2027-01-03"
+    }
+   ]
+  },
+  "market": {
+   "Arsenal": [
+    0.4194977843426883,
+    0.2658788774002954,
+    0.3146233382570162
+   ],
+   "Villa": [
+    0.47183748845798706,
+    0.2585410895660203,
+    0.2696214219759926
+   ],
+   "Bournemouth": [
+    0.4491671453187823,
+    0.27742676622630674,
+    0.273406088454911
+   ],
+   "Brentford": [
+    0.46198231735691014,
+    0.2594695207073057,
+    0.2785481619357841
+   ],
+   "Brighton": [
+    0.2063366972682657,
+    0.21819512814575223,
+    0.575468174585982
+   ],
+   "Chelsea": [
+    0.5336670838548184,
+    0.2360450563204005,
+    0.23028785982478095
+   ],
+   "Coventry": [
+    0.3103551775887944,
+    0.2868434217108554,
+    0.40280140070035014
+   ],
+   "Palace": [
+    0.17184764295860727,
+    0.21003600806051997,
+    0.6181163489808729
+   ],
+   "Everton": [
+    0.3157894736842105,
+    0.2631578947368421,
+    0.42105263157894735
+   ],
+   "Fulham": [
+    0.2696214219759926,
+    0.2585410895660203,
+    0.47183748845798706
+   ],
+   "Hull": [
+    0.3641875505254648,
+    0.2784963621665319,
+    0.3573160873080032
+   ],
+   "Ipswich": [
+    0.3573160873080032,
+    0.2784963621665319,
+    0.3641875505254648
+   ],
+   "Leeds": [
+    0.273406088454911,
+    0.27742676622630674,
+    0.4491671453187823
+   ],
+   "Liverpool": [
+    0.3146233382570162,
+    0.2658788774002954,
+    0.4194977843426883
+   ],
+   "Man City": [
+    0.575468174585982,
+    0.21819512814575223,
+    0.2063366972682657
+   ],
+   "Man Utd": [
+    0.23028785982478095,
+    0.2360450563204005,
+    0.5336670838548184
+   ],
+   "Newcastle": [
+    0.42105263157894735,
+    0.2631578947368421,
+    0.3157894736842105
+   ],
+   "Forest": [
+    0.2785481619357841,
+    0.2594695207073057,
+    0.46198231735691014
+   ],
+   "Sunderland": [
+    0.40280140070035014,
+    0.2868434217108554,
+    0.3103551775887944
+   ],
+   "Spurs": [
+    0.6181163489808729,
+    0.21003600806051997,
+    0.17184764295860727
+   ]
+  }
+ },
  "sources": [
   {
    "title": "Sports betting odds, week 9 (RG.org)",

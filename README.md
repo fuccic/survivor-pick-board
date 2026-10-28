@@ -12,6 +12,12 @@ Every week of a Premier League survivor pool comes down to one nervy question: *
 
 That last rule is the whole puzzle. The safest team this week might be the only lifeboat you have in round 15.
 
+**Try it:** https://fuccic.github.io/survivor-pick-board/
+
+## Play along with your own picks
+
+The page opens on an example player. Tap the teams **you've** already used, set your lives, and say whether a draw is safe in your pool. Your pick, season plan and stress test update instantly, all in your browser. Your choices are saved on your device, so next week you just tap the team you used.
+
 ## What you get
 
 - **This week's pick**, with its chance of losing in big friendly numbers
@@ -43,12 +49,14 @@ curl -sS -o en1.json https://raw.githubusercontent.com/openfootball/football.jso
 
 # crunch the numbers, then build the page
 python3 model.py data.json en1.json
-python3 build.py data.json template.html index.html
+python3 build.py data.json template.html index.html   # inlines engine.js too
 ```
 
 Open `index.html` in a browser and you're done.
 
 ### The weekly ritual
+
+*(For whoever runs the site.)*
 
 Before each round, open `model.py` and update:
 
@@ -65,6 +73,7 @@ Then run the three commands above.
 | File | What it does |
 |---|---|
 | `model.py` | The brains: fits ratings, ranks picks, plans the season, runs stress tests |
+| `engine.js` | The planner, ported to the browser so anyone can enter their own picks |
 | `template.html` | The good-looking part |
 | `build.py` | Pours the numbers into the page |
 | `data.json` | This week's results from the model |

@@ -202,6 +202,14 @@ out = {
     'grid':grid, 'ratings':sorted(({'team':t,'r':R[t]} for t in TEAMS), key=lambda x:-x['r']),
     'model':{'homeAdv':h, 'drawWidth':c, 'fitError':resid, 'calibMatches':len(CALIB)},
     'stress':{'scenarios':stress, 'monteCarlo':mc, 'runs':N},
+    # everything the page needs to re-plan for any player's used teams / lives / draw rule
+    'engine':{
+        'round':CUR, 'last':LAST, 'teams':TEAMS, 'h':h, 'c':c, 'homeShift':0.12, 'noise':0.15, 'runs':N,
+        'ratings':{t:R[t] for t in TEAMS},
+        'fixtures':{t:[{'round':rd, 'opp':FIX[(rd,t)][0], 'home':FIX[(rd,t)][1], 'date':FIX[(rd,t)][2]}
+                       for rd in ROUNDS] for t in TEAMS},
+        'market':{t:list(outcome(R, h, c, CUR, t)) for t in TEAMS},
+    },
     'sources':[{'title':'Sports betting odds, week 9 (RG.org)','url':'https://rg.org/news/soccer/liverpool-vs-arsenal-chelsea-vs-man-utd-premier-league-week-9-odds-2026'},
                {'title':'openfootball 2026-27 fixtures','url':'https://github.com/openfootball/football.json'},
                {'title':'Opta preseason projection (SI)','url':'https://www.si.com/soccer/supercomputer-predicts-final-2026-27-premier-league-table-arsenal-perfect-start'},

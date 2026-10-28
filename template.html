@@ -126,36 +126,95 @@ tr:last-child td{border-bottom:0}
 footer{font-size:13px;color:var(--muted);display:grid;gap:6px;border-top:1px solid var(--line);padding-top:14px}
 footer a{color:var(--accent)}
 .foot-links{display:flex;flex-wrap:wrap;gap:6px 16px}
+/* "Your picks" form */
+.mine{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:16px}
+.mine-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:10px}
+.mode{font-size:13px;padding:3px 10px;border-radius:999px;background:var(--sunken);border:1px solid var(--line);white-space:nowrap}
+.mode.custom{background:var(--accent-soft);border-color:var(--accent)}
+.mine-grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:760px){.mine-grid{grid-template-columns:1fr}}
+.field{display:grid;gap:8px;border:0;margin:0;padding:0;min-width:0}
+.field legend{padding:0;margin-bottom:8px}
+.teams{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:6px}
+.tbtn{font:inherit;font-size:14px;text-align:left;padding:7px 10px;border-radius:4px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;gap:6px;align-items:center}
+.tbtn:hover{border-color:var(--accent)}
+.tbtn[aria-pressed="true"]{background:var(--sunken);color:var(--muted);text-decoration:line-through}
+.tbtn[aria-pressed="true"]::after{content:"used";font-size:11px;text-decoration:none;font-family:var(--display);letter-spacing:.08em;text-transform:uppercase}
+.tbtn:focus-visible,.seg button:focus-visible,.linkbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.seg{display:flex;border:1px solid var(--line);border-radius:4px;overflow:hidden;width:max-content;max-width:100%}
+.seg button{font:inherit;font-size:14px;padding:7px 14px;border:0;border-right:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--bg);font-weight:600}
+.seg.wrap-ok{flex-wrap:wrap;width:auto}
+.side{display:grid;gap:16px}
+.mine-foot{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:13.5px}
+.linkbtn{font:inherit;font-size:13.5px;background:none;border:0;padding:0;color:var(--accent);text-decoration:underline;cursor:pointer}
+.note{color:var(--muted)}
+.note.warn{color:var(--lose)}
+.busy{opacity:.55}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:6px;padding:28px;text-align:center}
 </style>
 
 <div class="wrap">
   <header class="top">
     <div>
-      <div class="eyebrow" id="sub">Premier League survivor · 2026–27</div>
+      <div class="eyebrow">Premier League survivor · 2026–27</div>
       <h1>Survivor Pick Board</h1>
     </div>
     <div class="status">
       <div class="stat"><span class="eyebrow">Round</span><b class="num" id="st-round"></b></div>
-      <div class="stat"><span class="eyebrow">Lives</span><div class="lives" id="st-lives" aria-label=""></div></div>
+      <div class="stat"><span class="eyebrow">Lives</span><div class="lives" id="st-lives"></div></div>
       <div class="stat"><span class="eyebrow">Teams left</span><b class="num" id="st-left"></b></div>
-      <div class="stat"><span class="eyebrow">Updated</span><b class="num" id="st-upd" style="font-size:18px"></b></div>
+      <div class="stat"><span class="eyebrow">Odds updated</span><b class="num" id="st-upd" style="font-size:18px"></b></div>
     </div>
   </header>
 
+  <section class="mine" aria-labelledby="mine-h">
+    <div class="mine-head">
+      <h2 id="mine-h">Your picks</h2>
+      <span class="mode" id="mode"></span>
+    </div>
+    <div class="mine-grid">
+      <fieldset class="field">
+        <legend class="eyebrow">Teams you've already used this half</legend>
+        <div class="teams" id="teams"></div>
+      </fieldset>
+      <div class="side">
+        <fieldset class="field">
+          <legend class="eyebrow">Lives left</legend>
+          <div class="seg" id="lives-seg"></div>
+        </fieldset>
+        <fieldset class="field">
+          <legend class="eyebrow">In your pool, a draw is</legend>
+          <div class="seg wrap-ok" id="draw-seg">
+            <button type="button" id="draw-free" data-v="0">Safe</button>
+            <button type="button" id="draw-lose" data-v="1">A loss</button>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="mine-foot">
+      <span class="note" id="mine-note"></span>
+      <button type="button" class="linkbtn" id="clear">Clear all</button>
+      <button type="button" class="linkbtn" id="reset">Show the example</button>
+    </div>
+  </section>
+
+  <div id="results">
   <div class="top-grid">
-    <section class="pick" aria-labelledby="pick-h">
+    <section class="pick" aria-labelledby="pick-h" aria-live="polite">
       <div class="eyebrow" id="pick-h">Selected pick</div>
       <div class="match" id="p-match"></div>
       <div class="bigrow">
-        <div class="big"><span class="eyebrow">Chance of losing</span><b class="lose num" id="p-lose"></b></div>
+        <div class="big"><span class="eyebrow" id="p-lose-lbl">Chance of losing</span><b class="lose num" id="p-lose"></b></div>
         <div class="big"><span class="eyebrow">Survive the week</span><b class="safe num" id="p-safe"></b></div>
       </div>
       <div style="display:grid;gap:6px">
         <div class="wdl" id="p-wdl"></div>
-        <div class="legend"><span><i style="background:var(--win)"></i>Win <span class="num" id="p-w"></span></span><span><i style="background:var(--draw)"></i>Draw (free) <span class="num" id="p-d"></span></span><span><i style="background:var(--lose)"></i>Loss <span class="num" id="p-l"></span></span></div>
+        <div class="legend"><span><i style="background:var(--win)"></i>Win <span class="num" id="p-w"></span></span><span><i style="background:var(--draw)"></i><span id="p-d-lbl">Draw (safe)</span> <span class="num" id="p-d"></span></span><span><i style="background:var(--lose)"></i>Loss <span class="num" id="p-l"></span></span></div>
       </div>
       <p class="why" id="p-why"></p>
-      <div class="confidence">
+      <div class="confidence" id="conf">
         <span class="eyebrow">Stress test · which team comes out on top</span>
         <div class="chips" id="p-stress"></div>
         <div class="chips" id="p-mc"></div>
@@ -169,54 +228,64 @@ footer a{color:var(--accent)}
       </div>
       <div class="tablewrap">
         <table>
-          <thead><tr><th>Team</th><th>Opponent</th><th class="mini">Win · draw · loss</th><th class="r">Lose</th><th class="r">Plan cost</th></tr></thead>
+          <thead><tr><th>Team</th><th>Opponent</th><th class="mini">Win · draw · loss</th><th class="r" id="th-fail">Lose</th><th class="r">Plan cost</th></tr></thead>
           <tbody id="opts"></tbody>
         </table>
       </div>
     </section>
   </div>
 
-  <section class="section" aria-labelledby="plan-h">
+  <section class="section" aria-labelledby="plan-h" style="margin-top:28px">
     <div class="section-head">
-      <h2 id="plan-h">Season plan to round 19</h2>
+      <h2 id="plan-h">Season plan</h2>
       <span class="skip muted" id="plan-skip"></span>
     </div>
     <div class="plan" id="plan"></div>
   </section>
 
-  <section class="section" aria-labelledby="heat-h">
+  <section class="section" aria-labelledby="heat-h" style="margin-top:28px">
     <div class="section-head">
       <h2 id="heat-h">Fixture board</h2>
-      <span class="muted" style="font-size:13px">Chance each unused team loses, by round. Outlined cells are the selected plan.</span>
+      <span class="muted" style="font-size:13px" id="heat-note"></span>
     </div>
     <div class="tablewrap"><table class="heat" id="heat"></table></div>
   </section>
 
-  <div class="two">
+  <div class="two" style="margin-top:28px">
     <section class="panel" aria-labelledby="out-h">
       <h2 id="out-h">Outlook</h2>
       <div class="muted" style="font-size:14px" id="out-sum"></div>
       <div class="dist" id="dist"></div>
     </section>
     <section class="panel" aria-labelledby="hist-h">
-      <h2 id="hist-h">Your picks</h2>
+      <h2 id="hist-h">Pick history</h2>
       <div class="hist" id="hist"></div>
       <span class="eyebrow">Used this half</span>
       <div class="used" id="used"></div>
     </section>
   </div>
+  </div>
+
+  <div class="empty" id="no-teams" hidden>
+    <h2>No teams left to pick</h2>
+    <p class="muted">You've marked every team as used. Unmark the ones you still have.</p>
+  </div>
 
   <section class="method" aria-labelledby="how-h">
     <h2 id="how-h">How we pick</h2>
-    <div class="rules" id="rules"></div>
+    <div class="rules">
+      <span class="chip">Up to 3 lives; a loss costs one</span>
+      <span class="chip">Draws safe, or counted as a loss</span>
+      <span class="chip">Each team once per half (rounds 1–19)</span>
+    </div>
     <ol>
-      <li><div><b>Only a loss hurts.</b>Draws are free in this pool, so every team is judged on its chance of losing, not its chance of winning. A dogged team that draws a lot can be a better pick than a flashy one.</div></li>
+      <li><div><b>Only a loss hurts.</b>When draws are safe, every team is judged on its chance of losing, not its chance of winning, so a dogged team that draws a lot can beat a flashy one. If your pool counts draws as losses, switch the setting above and the page judges teams on their chance of not winning instead.</div></li>
       <li><div><b>Start from the market.</b>This week's chances come straight from bookmaker prices, with the bookies' margin taken out. Prices already reflect injuries, form and team news.</div></li>
       <li><div><b>Rate every team for later rounds.</b>Team strengths are fitted to the last three rounds of prices (recent weeks count more), lightly pulled toward Opta's season projection so one odd price can't swing a rating. Those strengths give a win, draw and loss chance for every future fixture.</div></li>
-      <li><div><b>Plan the whole half, not just this week.</b>Each unused team goes to at most one round from now to round 19, arranged to keep you alive as long as possible. The safest team this week is not always the right pick if it is the only good option you have for a hard round later.</div></li>
+      <li><div><b>Plan the whole half, not just this week.</b>Each team you have left goes to at most one round from now to round 19, arranged to keep you alive as long as possible. The safest team this week is not always the right pick if it's your only good option for a hard round later.</div></li>
       <li><div><b>Rank this week by the full plan.</b>For each option, we lock it in now and rebuild the best plan around it. "Plan cost" is how many expected rounds of survival you give up compared with the best start.</div></li>
-      <li><div><b>Stress-test before trusting it.</b>The top pick is re-checked with a stronger and weaker home advantage, more and less weight on Opta, and 60 runs with random noise on every rating. A pick that wins most of these is solid; a split result means it's a close call.</div></li>
-      <li><div><b>Refresh every week.</b>After each round: update results and lives, pull the new prices, refit, and replan. Ask Claude for "this week's survivor pick" to refresh this page.</div></li>
+      <li><div><b>Stress-test before trusting it.</b>The top pick is re-checked with a stronger and weaker home advantage and 60 runs with random noise on every team's rating. A pick that wins most of these is solid; a split result means it's a close call.</div></li>
+      <li><div><b>Refresh every week.</b>The odds and ratings are updated before each round. Your picks are saved in this browser, so next week just mark the team you used.</div></li>
     </ol>
   </section>
 
@@ -227,130 +296,199 @@ footer a{color:var(--accent)}
 </div>
 
 <script id="data" type="application/json">__DATA__</script>
+<script>__ENGINE__</script>
 <script>
 (function(){
   var D = JSON.parse(document.getElementById('data').textContent);
+  var E = D.engine, S = window.SurvivorEngine;
   var $ = function(id){return document.getElementById(id)};
   var pct = function(x){return Math.round(x*100)+'%'};
   var esc = function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
-  var riskClass = function(p){return p<0.25?'lo':(p<0.38?'mid':'hi')};
-  var fixtureOf = {}; D.grid.forEach(function(g){g.cells.forEach(function(c){fixtureOf[g.team+'|'+c.round]=c})});
   var dateFmt = function(s){var d=new Date(s+'T12:00:00');return d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})};
+  var KEY = 'survivor-mine-v1';
+  var EXAMPLE = {used: D.used.slice(), lives: D.lives, drawsLose: false};
 
-  $('st-round').textContent = D.round;
-  $('st-left').textContent = D.available.length;
+  // ---- state ----
+  var st = null;
+  try { var raw = localStorage.getItem(KEY); if (raw) { var p = JSON.parse(raw); if (p && Array.isArray(p.used)) st = {used: p.used.filter(function(t){return E.teams.indexOf(t)>=0}), lives: [1,2,3].indexOf(p.lives)>=0 ? p.lives : 3, drawsLose: !!p.drawsLose, custom: true}; } } catch(e){}
+  if (!st) st = {used: EXAMPLE.used.slice(), lives: EXAMPLE.lives, drawsLose: false, custom: false};
+  function save(){ try { if (st.custom) localStorage.setItem(KEY, JSON.stringify({used: st.used, lives: st.lives, drawsLose: st.drawsLose})); else localStorage.removeItem(KEY); } catch(e){} }
+
+  // ---- static header bits ----
+  $('st-round').textContent = E.round;
   $('st-upd').textContent = new Date(D.updated+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
-  var lv = $('st-lives'); lv.setAttribute('aria-label', D.lives+' of '+D.livesStart+' lives left');
-  for (var i=0;i<D.livesStart;i++){var s=document.createElement('span');s.className='life'+(i>=D.lives?' gone':'');lv.appendChild(s)}
-  $('sub').textContent = 'Premier League survivor · 2026–27 · '+D.entrants+' entrants';
+  $('plan-h').textContent = 'Season plan to round '+E.last;
+  $('f-model').textContent = 'Model: '+D.model.calibMatches+' priced matches, home edge '+D.model.homeAdv.toFixed(2)+', average gap to bookmaker prices '+(D.model.fitError*100).toFixed(1)+' points. Not betting advice.';
+  D.sources.forEach(function(s){var a=document.createElement('a');a.href=s.url;a.target='_blank';a.rel='noopener';a.textContent=s.title;$('f-src').appendChild(a)});
 
-  var best = D.thisWeek[0];
-  var sel = best.team;
-  try { var saved = localStorage.getItem('sel-r'+D.round); if (saved && D.thisWeek.some(function(r){return r.team===saved})) sel = saved; } catch(e){}
-
-  // options table
-  var tb = $('opts');
-  D.thisWeek.forEach(function(r, i){
-    var tr = document.createElement('tr'); tr.className='opt'; tr.tabIndex=0; tr.dataset.team=r.team;
-    tr.innerHTML = '<td><span class="team">'+esc(r.team)+'</span>'+(i===0?'<span class="tag">Pick</span>':'')+'</td>'+
-      '<td class="muted" style="white-space:nowrap">'+(r.home?'v ':'at ')+esc(r.opp)+'</td>'+
-      '<td class="mini"><div class="wdl"><span class="w" style="width:'+r.win*100+'%"></span><span class="d" style="width:'+r.draw*100+'%"></span><span class="l" style="width:'+r.lose*100+'%"></span></div></td>'+
-      '<td class="r"><span class="risk '+riskClass(r.lose)+'">'+pct(r.lose)+'</span></td>'+
-      '<td class="r cost">'+(r.planCost<0.005?'best':'−'+r.planCost.toFixed(2))+'</td>';
-    tr.addEventListener('click', function(){select(r.team)});
-    tr.addEventListener('keydown', function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();select(r.team)}});
-    tb.appendChild(tr);
+  // ---- form ----
+  var teamsSorted = E.teams.slice().sort();
+  var tWrap = $('teams');
+  teamsSorted.forEach(function(t){
+    var b=document.createElement('button'); b.type='button'; b.className='tbtn'; b.id='team-'+t.replace(/\s+/g,'-'); b.dataset.team=t;
+    b.innerHTML='<span>'+esc(t)+'</span>';
+    b.addEventListener('click', function(){
+      var i = st.used.indexOf(t); if (i>=0) st.used.splice(i,1); else st.used.push(t);
+      st.custom = true; changed();
+    });
+    tWrap.appendChild(b);
   });
-
-  // stress
-  var sc = $('p-stress');
-  D.stress.scenarios.forEach(function(s){var c=document.createElement('span');c.className='chip'+(s.pick===best.team?' hit':'');c.textContent=s.label+': '+s.pick;sc.appendChild(c)});
-  var mc = $('p-mc');
-  D.stress.monteCarlo.forEach(function(m){var c=document.createElement('span');c.className='chip'+(m.team===best.team?' hit':'');c.textContent=m.team+' '+pct(m.share)+' of '+D.stress.runs+' noisy runs';mc.appendChild(c)});
-
-  // history
-  var h = $('hist');
-  D.history.forEach(function(x){
-    var row=document.createElement('div');row.className='hrow';
-    var res = x.result && x.result.length===1 ? '<span class="res '+x.result+'">'+x.result+'</span>' : '<span class="muted" style="font-size:13px">'+esc(x.result||'')+'</span>';
-    row.innerHTML='<span class="eyebrow">R'+esc(x.round)+'</span><span>'+(x.opp?'<b>'+esc(x.team)+'</b> '+(x.home?'v ':'at ')+esc(x.opp)+' <span class="num muted">'+esc(x.score)+'</span>':esc(x.team))+'</span>'+res;
-    h.appendChild(row);
+  var lSeg = $('lives-seg');
+  [1,2,3].forEach(function(n){
+    var b=document.createElement('button'); b.type='button'; b.id='lives-'+n; b.textContent=n;
+    b.setAttribute('aria-label', n+(n===1?' life':' lives'));
+    b.addEventListener('click', function(){ st.lives=n; st.custom=true; changed(); });
+    lSeg.appendChild(b);
   });
-  D.used.forEach(function(t){var c=document.createElement('span');c.className='chip';c.textContent=t;$('used').appendChild(c)});
-  D.rules.forEach(function(t){var c=document.createElement('span');c.className='chip';c.textContent=t;$('rules').appendChild(c)});
+  $('draw-free').addEventListener('click', function(){ st.drawsLose=false; st.custom=true; changed(); });
+  $('draw-lose').addEventListener('click', function(){ st.drawsLose=true; st.custom=true; changed(); });
+  $('clear').addEventListener('click', function(){ st={used:[], lives:3, drawsLose:false, custom:true}; changed(); });
+  $('reset').addEventListener('click', function(){ st={used:EXAMPLE.used.slice(), lives:EXAMPLE.lives, drawsLose:false, custom:false}; changed(); });
 
-  // heat grid skeleton
-  var rounds = D.grid[0].cells.map(function(c){return c.round});
-  var heat = $('heat');
-  var thead = '<thead><tr><th></th>'+rounds.map(function(r){return '<th class="eyebrow">R'+r+'</th>'}).join('')+'</tr></thead>';
-  var order = D.thisWeek.map(function(r){return r.team});
-  var body = '<tbody>'+order.map(function(t){
-    var g = D.grid.filter(function(x){return x.team===t})[0];
-    return '<tr><th class="rowh" scope="row">'+esc(t)+'</th>'+g.cells.map(function(c){
-      var p=c.lose, bg = p<0.25?'var(--heat-lo)':(p<0.38?'var(--heat-mid)':'var(--heat-hi)');
-      return '<td><div class="cell" data-k="'+esc(t)+'|'+c.round+'" style="background:'+bg+'" title="'+esc(t)+' '+(c.home?'v ':'at ')+esc(c.opp)+': '+pct(p)+' lose"><span><span class="p">'+pct(p)+'</span><br><span class="o">'+(c.home?'':'@')+esc(c.opp.slice(0,3))+'</span></span></div></td>';
-    }).join('')+'</tr>';
-  }).join('')+'</tbody>';
-  heat.innerHTML = thead+body;
+  function syncForm(){
+    [].forEach.call(tWrap.children, function(b){ b.setAttribute('aria-pressed', st.used.indexOf(b.dataset.team)>=0); });
+    [].forEach.call(lSeg.children, function(b,i){ b.setAttribute('aria-pressed', st.lives===i+1); });
+    $('draw-free').setAttribute('aria-pressed', !st.drawsLose); $('draw-lose').setAttribute('aria-pressed', st.drawsLose);
+    var m=$('mode'); m.textContent = st.custom ? 'Showing your picks' : 'Showing an example player'; m.className='mode'+(st.custom?' custom':'');
+    $('reset').hidden = !st.custom;
+    var n = st.used.length, want = E.round-1, note=$('mine-note');
+    if (!st.custom) { note.className='note'; note.textContent='Tap the teams you have used to get your own pick. Your choices stay in this browser.'; }
+    else if (n !== want) { note.className='note warn'; note.textContent='You\'ve marked '+n+' team'+(n===1?'':'s')+'. Before round '+E.round+' most players have used '+want+'.'; }
+    else { note.className='note'; note.textContent='Saved in this browser. Next week, just mark the team you used.'; }
+    var lv=$('st-lives'); lv.innerHTML=''; lv.setAttribute('aria-label', st.lives+' of 3 lives left');
+    for (var i=0;i<3;i++){var s=document.createElement('span');s.className='life'+(i>=st.lives?' gone':'');lv.appendChild(s)}
+  }
 
-  function survival(plan){
-    var L=D.lives, dist=new Array(L+1).fill(0); dist[L]=1; var tot=0;
-    plan.forEach(function(s){var p=s.lose, n=new Array(L+1).fill(0);
-      for(var k=1;k<=L;k++){n[k]+=dist[k]*(1-p);n[k-1]+=dist[k]*p} n[0]+=dist[0]; dist=n; tot+=1-dist[0]});
-    return {exp:tot, dist:dist};
+  // ---- results ----
+  var res = null, sel = null, stressTimer = null, stressFor = '';
+  var tb = $('opts'), heat = $('heat');
+  var riskClass = function(p){ var a = st.drawsLose ? 0.12 : 0; return p<0.25+a?'lo':(p<0.38+a?'mid':'hi') };
+
+  function changed(){ save(); compute(); }
+
+  function compute(){
+    syncForm();
+    var avail = E.teams.filter(function(t){return st.used.indexOf(t)<0});
+    $('st-left').textContent = avail.length;
+    $('results').hidden = !avail.length; $('no-teams').hidden = !!avail.length;
+    if (!avail.length) return;
+    res = S.run(E, {used: st.used, lives: st.lives, drawsLose: st.drawsLose});
+    sel = res.rows[0].team;  // a new set of picks always opens on its best option
+    var failWord = st.drawsLose ? 'Not win' : 'Lose';
+    $('th-fail').textContent = failWord;
+    $('p-lose-lbl').textContent = st.drawsLose ? 'Chance of not winning' : 'Chance of losing';
+    $('p-d-lbl').textContent = st.drawsLose ? 'Draw (counts as loss)' : 'Draw (safe)';
+    $('heat-note').textContent = 'Chance each team you have left '+(st.drawsLose?'fails to win':'loses')+', by round. Outlined cells are the selected plan.';
+    drawTable(); drawHeat(); drawHistory(); select(sel);
+    queueStress();
+  }
+
+  function drawTable(){
+    tb.innerHTML='';
+    res.rows.forEach(function(r, i){
+      var tr = document.createElement('tr'); tr.className='opt'; tr.tabIndex=0; tr.dataset.team=r.team;
+      tr.innerHTML = '<td><span class="team">'+esc(r.team)+'</span>'+(i===0?'<span class="tag">Pick</span>':'')+'</td>'+
+        '<td class="muted" style="white-space:nowrap">'+(r.home?'v ':'at ')+esc(r.opp)+'</td>'+
+        '<td class="mini"><div class="wdl"><span class="w" style="width:'+r.win*100+'%"></span><span class="d" style="width:'+r.draw*100+'%"></span><span class="l" style="width:'+r.lose*100+'%"></span></div></td>'+
+        '<td class="r"><span class="risk '+riskClass(r.fail)+'">'+pct(r.fail)+'</span></td>'+
+        '<td class="r cost">'+(r.planCost<0.005?'best':'−'+r.planCost.toFixed(2))+'</td>';
+      tr.addEventListener('click', function(){select(r.team)});
+      tr.addEventListener('keydown', function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();select(r.team)}});
+      tb.appendChild(tr);
+    });
+  }
+
+  function drawHeat(){
+    var rounds = res.rounds;
+    var h = '<thead><tr><th></th>'+rounds.map(function(r){return '<th class="eyebrow">R'+r+'</th>'}).join('')+'</tr></thead><tbody>';
+    res.rows.forEach(function(row){
+      var t=row.team;
+      h += '<tr><th class="rowh" scope="row">'+esc(t)+'</th>'+E.fixtures[t].map(function(f){
+        var p=res.outcomes[t][f.round].fail, a = st.drawsLose?0.12:0;
+        var bg = p<0.25+a?'var(--heat-lo)':(p<0.38+a?'var(--heat-mid)':'var(--heat-hi)');
+        return '<td><div class="cell" data-k="'+esc(t)+'|'+f.round+'" style="background:'+bg+'" title="'+esc(t)+' '+(f.home?'v ':'at ')+esc(f.opp)+': '+pct(p)+'"><span><span class="p">'+pct(p)+'</span><br><span class="o">'+(f.home?'':'@')+esc(f.opp.slice(0,3))+'</span></span></div></td>';
+      }).join('')+'</tr>';
+    });
+    heat.innerHTML = h+'</tbody>';
+  }
+
+  function drawHistory(){
+    var h=$('hist'); h.innerHTML='';
+    if (st.custom) { h.hidden = true; }
+    else {
+      h.hidden = false;
+      D.history.forEach(function(x){
+        var row=document.createElement('div');row.className='hrow';
+        var r = x.result && x.result.length===1 ? '<span class="res '+x.result+'">'+x.result+'</span>' : '<span class="muted" style="font-size:13px">'+esc(x.result||'')+'</span>';
+        row.innerHTML='<span class="eyebrow">R'+esc(x.round)+'</span><span>'+(x.opp?'<b>'+esc(x.team)+'</b> '+(x.home?'v ':'at ')+esc(x.opp)+' <span class="num muted">'+esc(x.score)+'</span>':esc(x.team))+'</span>'+r;
+        h.appendChild(row);
+      });
+    }
+    $('hist-h').textContent = st.custom ? 'Your used teams' : 'Example pick history';
+    var u=$('used'); u.innerHTML='';
+    if (!st.used.length) { var e=document.createElement('span'); e.className='muted'; e.style.fontSize='14px'; e.textContent='None yet.'; u.appendChild(e); }
+    st.used.slice().sort().forEach(function(t){var c=document.createElement('span');c.className='chip';c.textContent=t;u.appendChild(c)});
   }
 
   function select(team){
-    sel = team; try{localStorage.setItem('sel-r'+D.round, team)}catch(e){}
-    var r = D.thisWeek.filter(function(x){return x.team===team})[0];
-    [].forEach.call(tb.children,function(tr){tr.classList.toggle('sel', tr.dataset.team===team); tr.setAttribute('aria-selected', tr.dataset.team===team)});
-    $('pick-h').textContent = team===best.team ? 'Round '+D.round+' pick' : 'Alternative · round '+D.round;
+    sel = team;
+    var best = res.rows[0], r = res.rows.filter(function(x){return x.team===team})[0];
+    [].forEach.call(tb.children,function(tr){var on=tr.dataset.team===team; tr.classList.toggle('sel', on); tr.setAttribute('aria-selected', on)});
+    $('pick-h').textContent = team===best.team ? 'Round '+E.round+' pick' : 'Alternative · round '+E.round;
     $('p-match').innerHTML = esc(r.team)+' <span class="muted">'+(r.home?'v':'at')+'</span> '+esc(r.opp)+'<small>'+dateFmt(r.date)+(r.home?' · home':' · away')+'</small>';
-    $('p-lose').textContent = pct(r.lose); $('p-safe').textContent = pct(1-r.lose);
+    $('p-lose').textContent = pct(r.fail); $('p-safe').textContent = pct(1-r.fail);
     $('p-wdl').innerHTML = '<span class="w" style="width:'+r.win*100+'%"></span><span class="d" style="width:'+r.draw*100+'%"></span><span class="l" style="width:'+r.lose*100+'%"></span>';
     $('p-w').textContent=pct(r.win); $('p-d').textContent=pct(r.draw); $('p-l').textContent=pct(r.lose);
-    var safest = D.thisWeek.slice().sort(function(a,b){return a.lose-b.lose})[0];
-    var why;
+    var safest = res.rows.slice().sort(function(a,b){return a.fail-b.fail})[0], why;
     if (team===best.team){
-      var second = D.thisWeek[1];
-      var lead;
-      if (safest.team===team) lead = 'It is also the lowest loss chance on the board this week. ';
-      else if (r.lose-safest.lose < 0.02) lead = 'It is level with '+esc(safest.team)+' for the lowest loss chance this week, and '+esc(safest.team)+' is worth more later. ';
-      else lead = esc(safest.team)+' is safer this week ('+pct(safest.lose)+'), but you need it more later. ';
-      why = 'Best start for the rest of the half. '+lead+
-            'It\'s a close call with '+esc(second.team)+' (only '+second.planCost.toFixed(2)+' expected rounds behind), so check the stress test below.';
+      var second = res.rows[1], lead;
+      if (safest.team===team) lead = 'It is also the safest option on the board this week. ';
+      else if (r.fail-safest.fail < 0.02) lead = 'It is level with '+esc(safest.team)+' as the safest option this week, and '+esc(safest.team)+' is worth more later. ';
+      else lead = esc(safest.team)+' is safer this week ('+pct(safest.fail)+'), but you need it more later. ';
+      why = 'Best start for the rest of the half. '+lead;
+      if (second) why += second.planCost < 0.15 ? 'It\'s a close call with '+esc(second.team)+' (only '+second.planCost.toFixed(2)+' expected rounds behind), so check the stress test below.' : 'The next best option, '+esc(second.team)+', is '+second.planCost.toFixed(2)+' expected rounds behind.';
     } else {
-      why = 'Using '+esc(team)+' now gives up about '+r.planCost.toFixed(2)+' expected rounds of survival compared with '+esc(best.team)+'. '+
-            (r.lose<best.lose?'It is safer this week, but you would need it more later.':'It is also riskier this week.');
+      why = 'Using '+esc(team)+' now gives up about '+r.planCost.toFixed(2)+' expected rounds of survival compared with '+esc(best.team)+'. '+(r.fail<best.fail?'It is safer this week, but you would need it more later.':'It is also riskier this week.');
     }
     $('p-why').innerHTML = why;
 
-    // plan
-    var pl = $('plan'); pl.innerHTML='';
+    var pl=$('plan'); pl.innerHTML='';
     r.plan.forEach(function(s){
-      var f = fixtureOf[s.team+'|'+s.round];
-      var d=document.createElement('div'); d.className='slot'+(s.round===D.round?' now':'');
-      d.innerHTML='<span class="rd">Round '+s.round+'</span><span class="tm">'+esc(s.team)+'</span><span class="vs">'+(f.home?'v ':'at ')+esc(f.opp)+'</span><span class="risk '+riskClass(s.lose)+'">'+pct(s.lose)+' lose</span>';
+      var d=document.createElement('div'); d.className='slot'+(s.round===E.round?' now':'');
+      if (!s.team) { d.innerHTML='<span class="rd">Round '+s.round+'</span><span class="tm muted">No team left</span>'; pl.appendChild(d); return; }
+      var f = E.fixtures[s.team].filter(function(x){return x.round===s.round})[0];
+      d.innerHTML='<span class="rd">Round '+s.round+'</span><span class="tm">'+esc(s.team)+'</span><span class="vs">'+(f.home?'v ':'at ')+esc(f.opp)+'</span><span class="risk '+riskClass(s.fail)+'">'+pct(s.fail)+(st.drawsLose?' not win':' lose')+'</span>';
       pl.appendChild(d);
     });
     var inPlan = r.plan.map(function(s){return s.team});
-    var skipped = D.available.filter(function(t){return inPlan.indexOf(t)<0});
+    var skipped = res.avail.filter(function(t){return inPlan.indexOf(t)<0});
     $('plan-skip').textContent = skipped.length ? 'Not needed this half: '+skipped.join(', ') : '';
     [].forEach.call(heat.querySelectorAll('.cell'),function(c){c.classList.remove('inplan')});
-    r.plan.forEach(function(s){var c=heat.querySelector('[data-k="'+s.team+'|'+s.round+'"]'); if(c) c.classList.add('inplan')});
+    r.plan.forEach(function(s){ if(!s.team) return; var c=heat.querySelector('[data-k="'+s.team+'|'+s.round+'"]'); if(c) c.classList.add('inplan')});
 
-    // outlook
-    var sv = survival(r.plan);
-    $('out-sum').innerHTML = 'With this plan you survive about <b class="num">'+sv.exp.toFixed(1)+'</b> of the '+r.plan.length+' remaining rounds on average. Nobody in a '+D.entrants+'-player pool is likely to run the table, so the aim is to outlast the field.';
-    var dd = $('dist'); dd.innerHTML='';
-    var rowsD = [];
-    for (var k=D.lives;k>=1;k--) rowsD.push({label:'Through R'+D.lastRound+', '+k+' '+(k===1?'life':'lives'), p:sv.dist[k]});
-    rowsD.push({label:'Out before R'+D.lastRound, p:sv.dist[0]});
+    $('out-sum').innerHTML = 'With this plan you survive about <b class="num">'+r.expRounds.toFixed(1)+'</b> of the '+r.plan.length+' remaining rounds on average. In a big pool, hardly anyone runs the table, so the aim is to outlast the field.';
+    var dd=$('dist'); dd.innerHTML=''; var rowsD=[];
+    for (var k=st.lives;k>=1;k--) rowsD.push({label:'Through R'+E.last+', '+k+' '+(k===1?'life':'lives'), p:r.dist[k]});
+    rowsD.push({label:'Out before R'+E.last, p:r.dist[0]});
     rowsD.forEach(function(x){var e=document.createElement('div');e.className='drow';e.innerHTML='<span>'+x.label+'</span><div class="dbar"><span style="width:'+(x.p*100)+'%"></span></div><span class="num r">'+(x.p*100).toFixed(1)+'%</span>';dd.appendChild(e)});
   }
-  select(sel);
 
-  $('f-model').textContent = 'Model: '+D.model.calibMatches+' priced matches, home edge '+D.model.homeAdv.toFixed(2)+', average gap to bookmaker prices '+(D.model.fitError*100).toFixed(1)+' points. Not betting advice.';
-  D.sources.forEach(function(s){var a=document.createElement('a');a.href=s.url;a.target='_blank';a.rel='noopener';a.textContent=s.title;$('f-src').appendChild(a)});
+  function queueStress(){
+    var key = JSON.stringify([st.used.slice().sort(), st.lives, st.drawsLose]);
+    var conf=$('conf'); conf.classList.add('busy');
+    $('p-stress').innerHTML='<span class="chip">Checking…</span>'; $('p-mc').innerHTML='';
+    clearTimeout(stressTimer);
+    stressTimer = setTimeout(function(){
+      var out = S.stress(E, {used: st.used, lives: st.lives, drawsLose: st.drawsLose});
+      var best = res.rows[0].team; stressFor = key;
+      var sc=$('p-stress'); sc.innerHTML='';
+      out.scenarios.forEach(function(s){var c=document.createElement('span');c.className='chip'+(s.pick===best?' hit':'');c.textContent=s.label+': '+s.pick;sc.appendChild(c)});
+      var mc=$('p-mc'); mc.innerHTML='';
+      out.monteCarlo.forEach(function(m){var c=document.createElement('span');c.className='chip'+(m.team===best?' hit':'');c.textContent=m.team+' '+pct(m.share)+' of '+out.runs+' noisy runs';mc.appendChild(c)});
+      conf.classList.remove('busy');
+    }, 250);
+  }
+
+  compute();
 })();
 </script>
