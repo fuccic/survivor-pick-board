@@ -9,16 +9,45 @@
     return [pH, 1 - pH - pA, pA];
   }
 
-  // chance team t "fails" in each round: loss, or loss+draw if draws count as a loss
-  function outcomes(E, R, h, drawsLose) {
-    var out = {};
+  // results model: Poisson score grid with Dixon-Coles low-score adjustment (mirrors perf.py)
+  var FACT = [1]; for (var f = 1; f <= 10; f++) FACT[f] = FACT[f - 1] * f;
+  function rates(G, home, away) {
+    return [Math.exp(G.mu + G.home + G.att[home] - G.def[away]), Math.exp(G.mu + G.att[away] - G.def[home])];
+  }
+  function tau(x, y, lh, la, rho) {
+    if (x === 0 && y === 0) return 1 - lh * la * rho;
+    if (x === 0 && y === 1) return 1 + lh * rho;
+    if (x === 1 && y === 0) return 1 + la * rho;
+    if (x === 1 && y === 1) return 1 - rho;
+    return 1;
+  }
+  function goalsWDL(G, home, away) {
+    var r = rates(G, home, away), lh = r[0], la = r[1], H = 0, D = 0, A = 0, ph = [], pa = [];
+    for (var k = 0; k <= 10; k++) { ph[k] = Math.exp(-lh) * Math.pow(lh, k) / FACT[k]; pa[k] = Math.exp(-la) * Math.pow(la, k) / FACT[k]; }
+    for (var i = 0; i <= 10; i++) for (var j = 0; j <= 10; j++) {
+      var p = ph[i] * pa[j] * tau(i, j, lh, la, G.rho);
+      if (i > j) H += p; else if (i === j) D += p; else A += p;
+    }
+    var s = H + D + A; return [H / s, D / s, A / s];
+  }
+
+  // chance team t "fails" in each round: loss, or loss+draw if draws count as a loss.
+  // This week: market odds. Later weeks: blend of odds-based ratings and the results model.
+  function outcomes(E, R, h, drawsLose, G, bw) {
+    G = G || E.goals; bw = bw == null ? E.blend : bw;
+    var out = {}, cache = {};
+    var blend = function (home, away) {
+      var k = home + '|' + away; if (cache[k]) return cache[k];
+      var pm = probs(R[home], R[away], h, E.c), pg = bw < 1 ? goalsWDL(G, home, away) : [0, 0, 0];
+      return (cache[k] = [bw * pm[0] + (1 - bw) * pg[0], bw * pm[1] + (1 - bw) * pg[1], bw * pm[2] + (1 - bw) * pg[2]]);
+    };
     E.teams.forEach(function (t) {
       out[t] = {};
       E.fixtures[t].forEach(function (f) {
         var w, d, l;
         if (f.round === E.round) { w = E.market[t][0]; d = E.market[t][1]; l = E.market[t][2]; }
         else {
-          var p = f.home ? probs(R[t], R[f.opp], h, E.c) : probs(R[f.opp], R[t], h, E.c);
+          var p = f.home ? blend(t, f.opp) : blend(f.opp, t);
           if (f.home) { w = p[0]; d = p[1]; l = p[2]; } else { w = p[2]; d = p[1]; l = p[0]; }
         }
         out[t][f.round] = { win: w, draw: d, lose: l, fail: drawsLose ? l + d : l };
@@ -92,8 +121,8 @@
     return plan;
   }
 
-  function rank(E, opts, R, h) {
-    var O = outcomes(E, R, h, opts.drawsLose);
+  function rank(E, opts, R, h, G, bw) {
+    var O = outcomes(E, R, h, opts.drawsLose, G, bw);
     var rounds = []; for (var r = E.round; r <= E.last; r++) rounds.push(r);
     var avail = E.teams.filter(function (t) { return opts.used.indexOf(t) < 0; });
     var rows = avail.map(function (t) {
@@ -115,18 +144,25 @@
   function stress(E, opts) {
     var scen = [
       { label: 'Home advantage lower', pick: rank(E, opts, E.ratings, E.h - E.homeShift).rows[0].team },
-      { label: 'Home advantage higher', pick: rank(E, opts, E.ratings, E.h + E.homeShift).rows[0].team }
+      { label: 'Home advantage higher', pick: rank(E, opts, E.ratings, E.h + E.homeShift).rows[0].team },
+      { label: 'Odds model only', pick: rank(E, opts, E.ratings, E.h, E.goals, 1).rows[0].team },
+      { label: 'Results model only', pick: rank(E, opts, E.ratings, E.h, E.goals, 0).rows[0].team }
     ];
     var rand = rng(7), hits = {};
     var gauss = function () { var u = 1 - rand(), v = rand(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
     for (var i = 0; i < E.runs; i++) {
-      var R = {}; E.teams.forEach(function (t) { R[t] = E.ratings[t] + gauss() * E.noise; });
-      var tp = rank(E, opts, R, E.h).rows[0].team; hits[tp] = (hits[tp] || 0) + 1;
+      var R = {}, G = { mu: E.goals.mu, home: E.goals.home, rho: E.goals.rho, att: {}, def: {} };
+      E.teams.forEach(function (t) {
+        var z = gauss(); R[t] = E.ratings[t] + z * E.noise;      // same shock nudges both models
+        G.att[t] = E.goals.att[t] + z * 0.5 * E.noise + gauss() * 0.05;
+        G.def[t] = E.goals.def[t] + z * 0.5 * E.noise + gauss() * 0.05;
+      });
+      var tp = rank(E, opts, R, E.h, G).rows[0].team; hits[tp] = (hits[tp] || 0) + 1;
     }
     var mc = Object.keys(hits).map(function (k) { return { team: k, share: hits[k] / E.runs }; }).sort(function (a, b) { return b.share - a.share; });
     return { scenarios: scen, monteCarlo: mc, runs: E.runs };
   }
 
-  root.SurvivorEngine = { run: run, stress: stress, survival: survival };
+  root.SurvivorEngine = { run: run, stress: stress, survival: survival, goalsWDL: goalsWDL, rates: rates };
   if (typeof module !== 'undefined') module.exports = root.SurvivorEngine;
 })(typeof window !== 'undefined' ? window : globalThis);

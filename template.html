@@ -152,6 +152,12 @@ footer a{color:var(--accent)}
 .note{color:var(--muted)}
 .note.warn{color:var(--lose)}
 .busy{opacity:.55}
+.form{display:inline-flex;gap:3px;vertical-align:middle}
+.form i{display:block;width:9px;height:9px;border-radius:2px}
+.form i.W{background:var(--win)} .form i.D{background:var(--draw)} .form i.L{background:var(--lose)}
+.matchup{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:14px;font-size:14px}
+.mrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+.xg{font-family:var(--display);font-size:22px;font-weight:600}
 .empty{background:var(--surface);border:1px dashed var(--line);border-radius:6px;padding:28px;text-align:center}
 </style>
 
@@ -213,6 +219,12 @@ footer a{color:var(--accent)}
         <div class="wdl" id="p-wdl"></div>
         <div class="legend"><span><i style="background:var(--win)"></i>Win <span class="num" id="p-w"></span></span><span><i style="background:var(--draw)"></i><span id="p-d-lbl">Draw (safe)</span> <span class="num" id="p-d"></span></span><span><i style="background:var(--lose)"></i>Loss <span class="num" id="p-l"></span></span></div>
       </div>
+      <div class="matchup">
+        <span class="eyebrow">Matchup · form, last 5 (oldest → latest)</span>
+        <div class="mrow"><span id="m-team"></span><span class="form" id="m-team-f"></span></div>
+        <div class="mrow"><span id="m-opp"></span><span class="form" id="m-opp-f"></span></div>
+        <div class="mrow"><span class="muted">Expected score, from this season's goals and shots</span><span class="xg num" id="m-xg"></span></div>
+      </div>
       <p class="why" id="p-why"></p>
       <div class="confidence" id="conf">
         <span class="eyebrow">Stress test · which team comes out on top</span>
@@ -228,7 +240,7 @@ footer a{color:var(--accent)}
       </div>
       <div class="tablewrap">
         <table>
-          <thead><tr><th>Team</th><th>Opponent</th><th class="mini">Win · draw · loss</th><th class="r" id="th-fail">Lose</th><th class="r">Plan cost</th></tr></thead>
+          <thead><tr><th>Team</th><th>Opponent</th><th>Form</th><th class="mini">Win · draw · loss</th><th class="r" id="th-fail">Lose</th><th class="r">Plan cost</th></tr></thead>
           <tbody id="opts"></tbody>
         </table>
       </div>
@@ -281,10 +293,11 @@ footer a{color:var(--accent)}
     <ol>
       <li><div><b>Only a loss hurts.</b>When draws are safe, every team is judged on its chance of losing, not its chance of winning, so a dogged team that draws a lot can beat a flashy one. If your pool counts draws as losses, switch the setting above and the page judges teams on their chance of not winning instead.</div></li>
       <li><div><b>Start from the market.</b>This week's chances come straight from bookmaker prices, with the bookies' margin taken out. Prices already reflect injuries, form and team news.</div></li>
-      <li><div><b>Rate every team for later rounds.</b>Team strengths are fitted to the last three rounds of prices (recent weeks count more), lightly pulled toward Opta's season projection so one odd price can't swing a rating. Those strengths give a win, draw and loss chance for every future fixture.</div></li>
+      <li><div><b>Rate every team two ways for later rounds.</b>An odds model fits team strengths to the last three rounds of prices, lightly pulled toward Opta's season projection. A results model rates each team's attack and defence from this season's matches, using shots on target as well as goals and counting recent games a bit more. Every future fixture is scored as that attack against that defence, so each matchup gets its own chance of a win, draw or loss.</div></li>
+      <li><div><b>Blend them by how well they predict.</b>We fit the odds model without the latest week, then test which mix best predicts that week's fresh prices. Right now that's <span id="blend-txt"></span>. The results model can't see injuries or transfers, so it adds a little but doesn't drive the pick.</div></li>
       <li><div><b>Plan the whole half, not just this week.</b>Each team you have left goes to at most one round from now to round 19, arranged to keep you alive as long as possible. The safest team this week is not always the right pick if it's your only good option for a hard round later.</div></li>
       <li><div><b>Rank this week by the full plan.</b>For each option, we lock it in now and rebuild the best plan around it. "Plan cost" is how many expected rounds of survival you give up compared with the best start.</div></li>
-      <li><div><b>Stress-test before trusting it.</b>The top pick is re-checked with a stronger and weaker home advantage and 60 runs with random noise on every team's rating. A pick that wins most of these is solid; a split result means it's a close call.</div></li>
+      <li><div><b>Stress-test before trusting it.</b>The top pick is re-checked with a stronger and weaker home advantage, with each model on its own, and in 60 runs with random noise on every team's rating. A pick that wins most of these is solid; a split result means it's a close call.</div></li>
       <li><div><b>Refresh every week.</b>The odds and ratings are updated before each round. Your picks are saved in this browser, so next week just mark the team you used.</div></li>
     </ol>
   </section>
@@ -306,6 +319,12 @@ footer a{color:var(--accent)}
   var esc = function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
   var dateFmt = function(s){var d=new Date(s+'T12:00:00');return d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})};
   var KEY = 'survivor-mine-v1';
+  function formInner(t){
+    return E.form[t].map(function(g){return '<i class="'+g.r+'" title="'+g.r+' '+g.gf+'–'+g.ga+(g.home?' v ':' at ')+esc(g.opp)+'"></i>'}).join('');
+  }
+  function formDots(t){
+    return '<span class="form" aria-label="Form: '+E.form[t].map(function(g){return g.r}).join(' ')+'">'+formInner(t)+'</span>';
+  }
   var EXAMPLE = {used: D.used.slice(), lives: D.lives, drawsLose: false};
 
   // ---- state ----
@@ -318,7 +337,9 @@ footer a{color:var(--accent)}
   $('st-round').textContent = E.round;
   $('st-upd').textContent = new Date(D.updated+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
   $('plan-h').textContent = 'Season plan to round '+E.last;
-  $('f-model').textContent = 'Model: '+D.model.calibMatches+' priced matches, home edge '+D.model.homeAdv.toFixed(2)+', average gap to bookmaker prices '+(D.model.fitError*100).toFixed(1)+' points. Not betting advice.';
+  var bwp = Math.round(E.blend*100);
+  $('blend-txt').textContent = bwp+'% odds model and '+(100-bwp)+'% results model';
+  $('f-model').textContent = 'Model: '+D.model.calibMatches+' priced matches and '+D.model.resultsMatches+' results, blended '+bwp+'/'+(100-bwp)+' (odds/results). Average gap to bookmaker prices '+(D.model.fitError*100).toFixed(1)+' points. Not betting advice.';
   D.sources.forEach(function(s){var a=document.createElement('a');a.href=s.url;a.target='_blank';a.rel='noopener';a.textContent=s.title;$('f-src').appendChild(a)});
 
   // ---- form ----
@@ -389,6 +410,7 @@ footer a{color:var(--accent)}
       var tr = document.createElement('tr'); tr.className='opt'; tr.tabIndex=0; tr.dataset.team=r.team;
       tr.innerHTML = '<td><span class="team">'+esc(r.team)+'</span>'+(i===0?'<span class="tag">Pick</span>':'')+'</td>'+
         '<td class="muted" style="white-space:nowrap">'+(r.home?'v ':'at ')+esc(r.opp)+'</td>'+
+        '<td>'+formDots(r.team)+'</td>'+
         '<td class="mini"><div class="wdl"><span class="w" style="width:'+r.win*100+'%"></span><span class="d" style="width:'+r.draw*100+'%"></span><span class="l" style="width:'+r.lose*100+'%"></span></div></td>'+
         '<td class="r"><span class="risk '+riskClass(r.fail)+'">'+pct(r.fail)+'</span></td>'+
         '<td class="r cost">'+(r.planCost<0.005?'best':'−'+r.planCost.toFixed(2))+'</td>';
@@ -439,6 +461,11 @@ footer a{color:var(--accent)}
     $('p-lose').textContent = pct(r.fail); $('p-safe').textContent = pct(1-r.fail);
     $('p-wdl').innerHTML = '<span class="w" style="width:'+r.win*100+'%"></span><span class="d" style="width:'+r.draw*100+'%"></span><span class="l" style="width:'+r.lose*100+'%"></span>';
     $('p-w').textContent=pct(r.win); $('p-d').textContent=pct(r.draw); $('p-l').textContent=pct(r.lose);
+    $('m-team').innerHTML = '<b>'+esc(r.team)+'</b>'; $('m-opp').textContent = r.opp;
+    $('m-team-f').innerHTML = formInner(r.team); $('m-opp-f').innerHTML = formInner(r.opp);
+    var xr = r.home ? S.rates(E.goals, r.team, r.opp) : S.rates(E.goals, r.opp, r.team);
+    var mine = r.home ? xr[0] : xr[1], theirs = r.home ? xr[1] : xr[0];
+    $('m-xg').textContent = mine.toFixed(1)+' – '+theirs.toFixed(1);
     var safest = res.rows.slice().sort(function(a,b){return a.fail-b.fail})[0], why;
     if (team===best.team){
       var second = res.rows[1], lead;

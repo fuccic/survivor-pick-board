@@ -10,6 +10,8 @@
 6. Stress-test the top pick with rating noise and alternate home advantage.
 """
 import json, sys, random
+from datetime import date
+import perf
 from fractions import Fraction as F
 import numpy as np
 from scipy.optimize import minimize, linear_sum_assignment
@@ -76,19 +78,20 @@ def probs(rh, ra, h, c):
     d = rh - ra + h; pH = sig(d - c); pA = sig(-d - c); return pH, 1 - pH - pA, pA
 
 IDX = {t:i for i,t in enumerate(TEAMS)}
-def fit(lam=0.05):
+def fit(lam=0.05, calib=None):
+    CAL = calib if calib is not None else CALIB
     n = len(TEAMS)
     def err(x):
         r = x[:n]; h, c, s = x[n:]
         e = 0
-        for (a,b),(p,w) in CALIB.items():
+        for (a,b),(p,w) in CAL.items():
             e += w*np.sum((np.array(probs(r[IDX[a]], r[IDX[b]], h, c)) - p)**2)
         return e + lam*np.sum((r - s*Z)**2) + 10*np.mean(r)**2
     x0 = np.concatenate([Z*0.8, [0.25, 0.55, 0.8]])
     res = minimize(err, x0, method='L-BFGS-B')
     r = res.x[:n]; h, c, s = res.x[n:]
     resid = np.sqrt(sum(w*np.sum((np.array(probs(r[IDX[a]], r[IDX[b]], h, c)) - p)**2)
-                        for (a,b),(p,w) in CALIB.items()) / (3*len(CALIB)))
+                        for (a,b),(p,w) in CAL.items()) / (3*len(CAL)))
     return {t:float(r[IDX[t]]) for t in TEAMS}, float(h), float(c), float(resid)
 
 # ---- fixtures ----
@@ -101,12 +104,37 @@ for x in d['matches']:
 ROUNDS = list(range(CUR, LAST+1))
 AVAIL = [t for t in TEAMS if t not in USED]
 
+# ---- results model (team performance) ----
+RESULTS = perf.load(sys.argv[3] if len(sys.argv) > 3 else 'results.csv')
+GP_SET = {'goal_w':0.3, 'half_life':120.0, 'ridge':2.0}   # chosen by backtest.py
+ASOF = date(2026, 10, 28)
+GP = perf.fit(RESULTS, TEAMS, ASOF, **GP_SET)
+PG = {}
+for (rd, t), (o, home, _) in FIX.items():
+    if home: PG[(t, o)] = perf.wdl(GP, t, o)
+FORM = perf.form(RESULTS, TEAMS)
+
+def blended(R, h, c, home, away, bw):
+    pm = np.array(probs(R[home], R[away], h, c)); pg = np.array(PG[(home, away)])
+    return tuple(bw*pm + (1-bw)*pg)
+
+# How much to trust each model: fit the odds model on rounds 7-8 only, then see which
+# mix best predicts round 9's prices (which neither model has seen).
+_R0, _h0, _c0, _ = fit(calib={k:v for k,v in CALIB.items() if k in MW7 or k in MW8})
+BLEND_CHECK = []
+for w in np.arange(0, 1.0001, 0.05):
+    sse = sum(np.sum((np.array(blended(_R0, _h0, _c0, a, b, w)) - p)**2) for (a,b),p in MW9.items())
+    BLEND_CHECK.append((float(w), float(np.sqrt(sse/30))))
+BW = min(BLEND_CHECK, key=lambda x: x[1])[0]
+print('blend check (odds-model weight, rms error vs round-9 odds):',
+      [(round(w,2), round(e,4)) for w,e in BLEND_CHECK if abs(w*20 - round(w*20)) < 1e-6 and round(w*20) % 4 == 0], '-> weight', BW)
+
 def outcome(R, h, c, rd, t):
     o, home, _ = FIX[(rd,t)]
     if rd == CUR:
         H, D, A = MW9[(t,o) if home else (o,t)]
     else:
-        H, D, A = probs(R[t], R[o], h, c) if home else probs(R[o], R[t], h, c)
+        H, D, A = blended(R, h, c, t, o, BW) if home else blended(R, h, c, o, t, BW)
     return (float(H), float(D), float(A)) if home else (float(A), float(D), float(H))  # (win, draw, lose) for t
 
 def lose_matrix(R, h, c):
@@ -174,9 +202,10 @@ def top_pick(Rx, hx, cx):
     return rank_week(Rx, hx, cx)[0][0]['team']
 for hh in (h - 0.12, h + 0.12):
     stress.append({'label':'Home advantage %s' % ('lower' if hh < h else 'higher'), 'pick':top_pick(R, hh, c)})
-for lam in (0.01, 0.3):
-    Rx, hx, cx, _ = fit(lam)
-    stress.append({'label':'%s pull toward Opta' % ('Weaker' if lam < 0.05 else 'Stronger'), 'pick':top_pick(Rx, hx, cx)})
+_bw = BW
+for label, wv in (('Odds model only', 1.0), ('Results model only', 0.0)):
+    BW = wv; stress.append({'label':label, 'pick':top_pick(R, h, c)})
+BW = _bw
 random.seed(7); np.random.seed(7); N = 60; hits = {}
 for _ in range(N):
     Rx = {t: R[t] + np.random.normal(0, 0.15) for t in TEAMS}
@@ -200,10 +229,12 @@ out = {
     'skipped':[t for t in AVAIL if t not in plan.values()],
     'survival':{'expRounds':S[0], 'pEnd':S[1], 'livesLeft':{str(k):float(S[2][k]) for k in range(LIVES+1)}},
     'grid':grid, 'ratings':sorted(({'team':t,'r':R[t]} for t in TEAMS), key=lambda x:-x['r']),
-    'model':{'homeAdv':h, 'drawWidth':c, 'fitError':resid, 'calibMatches':len(CALIB)},
+    'model':{'homeAdv':h, 'drawWidth':c, 'fitError':resid, 'calibMatches':len(CALIB), 'blend':BW,
+             'resultsMatches':len(RESULTS), 'resultsSettings':GP_SET, 'blendCheck':BLEND_CHECK},
     'stress':{'scenarios':stress, 'monteCarlo':mc, 'runs':N},
     # everything the page needs to re-plan for any player's used teams / lives / draw rule
     'engine':{
+        'blend':BW, 'goals':GP, 'form':FORM,
         'round':CUR, 'last':LAST, 'teams':TEAMS, 'h':h, 'c':c, 'homeShift':0.12, 'noise':0.15, 'runs':N,
         'ratings':{t:R[t] for t in TEAMS},
         'fixtures':{t:[{'round':rd, 'opp':FIX[(rd,t)][0], 'home':FIX[(rd,t)][1], 'date':FIX[(rd,t)][2]}
