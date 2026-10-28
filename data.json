@@ -1,0 +1,1996 @@
+{
+ "updated": "2026-10-28",
+ "round": 9,
+ "lastRound": 19,
+ "lives": 2,
+ "livesStart": 3,
+ "entrants": 104,
+ "used": [
+  "Arsenal",
+  "Coventry",
+  "Man City",
+  "Chelsea",
+  "Everton",
+  "Man Utd",
+  "Spurs",
+  "Brentford"
+ ],
+ "available": [
+  "Villa",
+  "Bournemouth",
+  "Brighton",
+  "Palace",
+  "Fulham",
+  "Hull",
+  "Ipswich",
+  "Leeds",
+  "Liverpool",
+  "Newcastle",
+  "Forest",
+  "Sunderland"
+ ],
+ "history": [
+  {
+   "round": "1\u20135",
+   "team": "Arsenal, Coventry, Man City, Chelsea, Everton",
+   "result": "Coventry lost \u2014 1 life gone",
+   "lives": 2
+  },
+  {
+   "round": 6,
+   "team": "Man Utd",
+   "opp": "Spurs",
+   "home": true,
+   "score": "1\u20131",
+   "result": "D",
+   "lives": 2
+  },
+  {
+   "round": 7,
+   "team": "Spurs",
+   "opp": "Coventry",
+   "home": true,
+   "score": "3\u20131",
+   "result": "W",
+   "lives": 2
+  },
+  {
+   "round": 8,
+   "team": "Brentford",
+   "opp": "Hull",
+   "home": false,
+   "score": "1\u20131",
+   "result": "D",
+   "lives": 2
+  }
+ ],
+ "rules": [
+  "3 lives; a loss costs one",
+  "Draws are free",
+  "Each team once per half-season (rounds 1\u201319)"
+ ],
+ "thisWeek": [
+  {
+   "team": "Villa",
+   "win": 0.47183748845798706,
+   "draw": 0.2585410895660203,
+   "lose": 0.2696214219759926,
+   "expRounds": 6.116009879452163,
+   "pEnd": 0.1338263322628339,
+   "plan": [
+    {
+     "round": 9,
+     "team": "Villa",
+     "lose": 0.2696214219759926
+    },
+    {
+     "round": 10,
+     "team": "Liverpool",
+     "lose": 0.22686229666332894
+    },
+    {
+     "round": 11,
+     "team": "Brighton",
+     "lose": 0.20893020219692152
+    },
+    {
+     "round": 12,
+     "team": "Palace",
+     "lose": 0.25439348966608794
+    },
+    {
+     "round": 13,
+     "team": "Forest",
+     "lose": 0.28186222767446334
+    },
+    {
+     "round": 14,
+     "team": "Leeds",
+     "lose": 0.208186815623171
+    },
+    {
+     "round": 15,
+     "team": "Newcastle",
+     "lose": 0.32137668369615086
+    },
+    {
+     "round": 16,
+     "team": "Bournemouth",
+     "lose": 0.1863390994238885
+    },
+    {
+     "round": 17,
+     "team": "Fulham",
+     "lose": 0.4392685214187018
+    },
+    {
+     "round": 18,
+     "team": "Hull",
+     "lose": 0.4777694355754108
+    },
+    {
+     "round": 19,
+     "team": "Sunderland",
+     "lose": 0.22062762945197498
+    }
+   ],
+   "planCost": 0.0,
+   "opp": "Fulham",
+   "home": true,
+   "date": "2026-10-31"
+  },
+  {
+   "team": "Sunderland",
+   "win": 0.40280140070035014,
+   "draw": 0.2868434217108554,
+   "lose": 0.3103551775887944,
+   "expRounds": 6.078537491279419,
+   "pEnd": 0.11011021317414105,
+   "plan": [
+    {
+     "round": 9,
+     "team": "Sunderland",
+     "lose": 0.3103551775887944
+    },
+    {
+     "round": 10,
+     "team": "Liverpool",
+     "lose": 0.22686229666332894
+    },
+    {
+     "round": 11,
+     "team": "Villa",
+     "lose": 0.25602575891617335
+    },
+    {
+     "round": 12,
+     "team": "Leeds",
+     "lose": 0.1805988163133976
+    },
+    {
+     "round": 13,
+     "team": "Forest",
+     "lose": 0.28186222767446334
+    },
+    {
+     "round": 14,
+     "team": "Bournemouth",
+     "lose": 0.17953265319554668
+    },
+    {
+     "round": 15,
+     "team": "Newcastle",
+     "lose": 0.32137668369615086
+    },
+    {
+     "round": 16,
+     "team": "Brighton",
+     "lose": 0.16060073784855666
+    },
+    {
+     "round": 17,
+     "team": "Ipswich",
+     "lose": 0.46263562798131
+    },
+    {
+     "round": 18,
+     "team": "Palace",
+     "lose": 0.40631798297423405
+    },
+    {
+     "round": 19,
+     "team": "Fulham",
+     "lose": 0.47603149354519686
+    }
+   ],
+   "planCost": 0.0374723881727439,
+   "opp": "Coventry",
+   "home": false,
+   "date": "2026-10-31"
+  },
+  {
+   "team": "Newcastle",
+   "win": 0.42105263157894735,
+   "draw": 0.2631578947368421,
+   "lose": 0.3157894736842105,
+   "expRounds": 5.994423465425876,
+   "pEnd": 0.1355908440675957,
+   "plan": [
+    {
+     "round": 9,
+     "team": "Newcastle",
+     "lose": 0.3157894736842105
+    },
+    {
+     "round": 10,
+     "team": "Liverpool",
+     "lose": 0.22686229666332894
+    },
+    {
+     "round": 11,
+     "team": "Villa",
+     "lose": 0.25602575891617335
+    },
+    {
+     "round": 12,
+     "team": "Leeds",
+     "lose": 0.1805988163133976
+    },
+    {
+     "round": 13,
+     "team": "Forest",
+     "lose": 0.28186222767446334
+    },
+    {
+     "round": 14,
+     "team": "Bournemouth",
+     "lose": 0.17953265319554668
+    },
+    {
+     "round": 15,
+     "team": "Ipswich",
+     "lose": 0.41216097272724833
+    },
+    {
+     "round": 16,
+     "team": "Brighton",
+     "lose": 0.16060073784855666
+    },
+    {
+     "round": 17,
+     "team": "Fulham",
+     "lose": 0.4392685214187018
+    },
+    {
+     "round": 18,
+     "team": "Palace",
+     "lose": 0.40631798297423405
+    },
+    {
+     "round": 19,
+     "team": "Sunderland",
+     "lose": 0.22062762945197498
+    }
+   ],
+   "planCost": 0.12158641402628678,
+   "opp": "Everton",
+   "home": true,
+   "date": "2026-11-02"
+  },
+  {
+   "team": "Bournemouth",
+   "win": 0.4491671453187823,
+   "draw": 0.27742676622630674,
+   "lose": 0.273406088454911,
+   "expRounds": 5.993173582837447,
+   "pEnd": 0.13030713039013053,
+   "plan": [
+    {
+     "round": 9,
+     "team": "Bournemouth",
+     "lose": 0.273406088454911
+    },
+    {
+     "round": 10,
+     "team": "Liverpool",
+     "lose": 0.22686229666332894
+    },
+    {
+     "round": 11,
+     "team": "Villa",
+     "lose": 0.25602575891617335
+    },
+    {
+     "round": 12,
+     "team": "Palace",
+     "lose": 0.25439348966608794
+    },
+    {
+     "round": 13,
+     "team": "Forest",
+     "lose": 0.28186222767446334
+    },
+    {
+     "round": 14,
+     "team": "Leeds",
+     "lose": 0.208186815623171
+    },
+    {
+     "round": 15,
+     "team": "Newcastle",
+     "lose": 0.32137668369615086
+    },
+    {
+     "round": 16,
+     "team": "Brighton",
+     "lose": 0.16060073784855666
+    },
+    {
+     "round": 17,
+     "team": "Fulham",
+     "lose": 0.4392685214187018
+    },
+    {
+     "round": 18,
+     "team": "Hull",
+     "lose": 0.4777694355754108
+    },
+    {
+     "round": 19,
+     "team": "Sunderland",
+     "lose": 0.22062762945197498
+    }
+   ],
+   "planCost": 0.1228362966147154,
+   "opp": "Leeds",
+   "home": true,
+   "date": "2026-10-31"
+  },
+  {
+   "team": "Hull",
+   "win": 0.3641875505254648,
+   "draw": 0.2784963621665319,
+   "lose": 0.3573160873080032,
+   "expRounds": 5.983469652646488,
+   "pEnd": 0.1435190157774192,
+   "plan": [
+    {
+     "round": 9,
+     "team": "Hull",
+     "lose": 0.3573160873080032
+    },
+    {
+     "round": 10,
+     "team": "Liverpool",
+     "lose": 0.22686229666332894
+    },
+    {
+     "round": 11,
+     "team": "Villa",
+     "lose": 0.25602575891617335
+    },
+    {
+     "round": 12,
+     "team": "Leeds",
+     "lose": 0.1805988163133976
+    },
+    {
+     "round": 13,
+     "team": "Forest",
+     "lose": 0.28186222767446334
+    },
+    {
+     "round": 14,
+     "team": "Bournemouth",
+     "lose": 0.17953265319554668
+    },
+    {
+     "round": 15,
+     "team": "Newcastle",
+     "lose": 0.32137668369615086
+    },
+    {
+     "round": 16,
+     "team": "Brighton",
+     "lose": 0.16060073784855666
+    },
+    {
+     "round": 17,
+     "team": "Fulham",
+     "lose": 0.4392685214187018
+    },
+    {
+     "round": 18,
+     "team": "Palace",
+     "lose": 0.40631798297423405
+    },
+    {
+     "round": 19,
+     "team": "Sunderland",
+     "lose": 0.22062762945197498
+    }
+   ],
+   "planCost": 0.13254022680567434,
+   "opp": "Ipswich",
+   "home": true,
+   "date": "2026-10-31"
+  },
+  {
+   "team": "Ipswich",
+   "win": 0.3573160873080032,
+   "draw": 0.2784963621665319,
+   "lose": 0.3641875505254648,
+   "expRounds": 5.961887134584389,
+   "pEnd": 0.14242335269516038,
+   "plan": [
+    {
+     "round": 9,
+     "team": "Ipswich",
+     "lose": 0.3641875505254648
+    },
+    {
+     "round": 10,
+     "team": "Liverpool",
+     "lose": 0.22686229666332894
+    },
+    {
+     "round": 11,
+     "team": "Villa",
+     "lose": 0.25602575891617335
+    },
+    {
+     "round": 12,
+     "team": "Leeds",
+     "lose": 0.1805988163133976
+    },
+    {
+     "round": 13,
+     "team": "Forest",
+     "lose": 0.28186222767446334
+    },
+    {
+     "round": 14,
+     "team": "Bournemouth",
+     "lose": 0.17953265319554668
+    },
+    {
+     "round": 15,
+     "team": "Newcastle",
+     "lose": 0.32137668369615086
+    },
+    {
+     "round": 16,
+     "team": "Brighton",
+     "lose": 0.16060073784855666
+    },
+    {
+     "round": 17,
+     "team": "Fulham",
+     "lose": 0.4392685214187018
+    },
+    {
+     "round": 18,
+     "team": "Palace",
+     "lose": 0.40631798297423405
+    },
+    {
+     "round": 19,
+     "team": "Sunderland",
+     "lose": 0.22062762945197498
+    }
+   ],
+   "planCost": 0.15412274486777378,
+   "opp": "Hull",
+   "home": false,
+   "date": "2026-10-31"
+  },
+  {
+   "team": "Fulham",
+   "win": 0.2696214219759926,
+   "draw": 0.2585410895660203,
+   "lose": 0.47183748845798706,
+   "expRounds": 5.6644825197232604,
+   "pEnd": 0.11937248806347822,
+   "plan": [
+    {
+     "round": 9,
+     "team": "Fulham",
+     "lose": 0.47183748845798706
+    },
+    {
+     "round": 10,
+     "team": "Liverpool",
+     "lose": 0.22686229666332894
+    },
+    {
+     "round": 11,
+     "team": "Brighton",
+     "lose": 0.20893020219692152
+    },
+    {
+     "round": 12,
+     "team": "Leeds",
+     "lose": 0.1805988163133976
+    },
+    {
+     "round": 13,
+     "team": "Forest",
+     "lose": 0.28186222767446334
+    },
+    {
+     "round": 14,
+     "team": "Villa",
+     "lose": 0.2221077845706213
+    },
+    {
+     "round": 15,
+     "team": "Newcastle",
+     "lose": 0.32137668369615086
+    },
+    {
+     "round": 16,
+     "team": "Bournemouth",
+     "lose": 0.1863390994238885
+    },
+    {
+     "round": 17,
+     "team": "Ipswich",
+     "lose": 0.46263562798131
+    },
+    {
+     "round": 18,
+     "team": "Palace",
+     "lose": 0.40631798297423405
+    },
+    {
+     "round": 19,
+     "team": "Sunderland",
+     "lose": 0.22062762945197498
+    }
+   ],
+   "planCost": 0.45152735972890223,
+   "opp": "Villa",
+   "home": false,
+   "date": "2026-10-31"
+  },
+  {
+   "team": "Leeds",
+   "win": 0.273406088454911,
+   "draw": 0.27742676622630674,
+   "lose": 0.4491671453187823,
+   "expRounds": 5.602049132171535,
+   "pEnd": 0.09624607152449971,
+   "plan": [
+    {
+     "round": 9,
+     "team": "Leeds",
+     "lose": 0.4491671453187823
+    },
+    {
+     "round": 10,
+     "team": "Liverpool",
+     "lose": 0.22686229666332894
+    },
+    {
+     "round": 11,
+     "team": "Brighton",
+     "lose": 0.20893020219692152
+    },
+    {
+     "round": 12,
+     "team": "Palace",
+     "lose": 0.25439348966608794
+    },
+    {
+     "round": 13,
+     "team": "Forest",
+     "lose": 0.28186222767446334
+    },
+    {
+     "round": 14,
+     "team": "Bournemouth",
+     "lose": 0.17953265319554668
+    },
+    {
+     "round": 15,
+     "team": "Villa",
+     "lose": 0.2858830681795898
+    },
+    {
+     "round": 16,
+     "team": "Sunderland",
+     "lose": 0.26695912926677773
+    },
+    {
+     "round": 17,
+     "team": "Ipswich",
+     "lose": 0.46263562798131
+    },
+    {
+     "round": 18,
+     "team": "Newcastle",
+     "lose": 0.29784816578101875
+    },
+    {
+     "round": 19,
+     "team": "Fulham",
+     "lose": 0.47603149354519686
+    }
+   ],
+   "planCost": 0.5139607472806276,
+   "opp": "Bournemouth",
+   "home": false,
+   "date": "2026-10-31"
+  },
+  {
+   "team": "Forest",
+   "win": 0.2785481619357841,
+   "draw": 0.2594695207073057,
+   "lose": 0.46198231735691014,
+   "expRounds": 5.601520659023132,
+   "pEnd": 0.08325094974215785,
+   "plan": [
+    {
+     "round": 9,
+     "team": "Forest",
+     "lose": 0.46198231735691014
+    },
+    {
+     "round": 10,
+     "team": "Liverpool",
+     "lose": 0.22686229666332894
+    },
+    {
+     "round": 11,
+     "team": "Brighton",
+     "lose": 0.20893020219692152
+    },
+    {
+     "round": 12,
+     "team": "Leeds",
+     "lose": 0.1805988163133976
+    },
+    {
+     "round": 13,
+     "team": "Villa",
+     "lose": 0.3150195807590921
+    },
+    {
+     "round": 14,
+     "team": "Bournemouth",
+     "lose": 0.17953265319554668
+    },
+    {
+     "round": 15,
+     "team": "Newcastle",
+     "lose": 0.32137668369615086
+    },
+    {
+     "round": 16,
+     "team": "Sunderland",
+     "lose": 0.26695912926677773
+    },
+    {
+     "round": 17,
+     "team": "Ipswich",
+     "lose": 0.46263562798131
+    },
+    {
+     "round": 18,
+     "team": "Palace",
+     "lose": 0.40631798297423405
+    },
+    {
+     "round": 19,
+     "team": "Fulham",
+     "lose": 0.47603149354519686
+    }
+   ],
+   "planCost": 0.5144892204290308,
+   "opp": "Brentford",
+   "home": false,
+   "date": "2026-10-31"
+  },
+  {
+   "team": "Liverpool",
+   "win": 0.3146233382570162,
+   "draw": 0.2658788774002954,
+   "lose": 0.4194977843426883,
+   "expRounds": 5.334030137951103,
+   "pEnd": 0.12326445245454187,
+   "plan": [
+    {
+     "round": 9,
+     "team": "Liverpool",
+     "lose": 0.4194977843426883
+    },
+    {
+     "round": 10,
+     "team": "Fulham",
+     "lose": 0.35294537861291075
+    },
+    {
+     "round": 11,
+     "team": "Brighton",
+     "lose": 0.20893020219692152
+    },
+    {
+     "round": 12,
+     "team": "Palace",
+     "lose": 0.25439348966608794
+    },
+    {
+     "round": 13,
+     "team": "Forest",
+     "lose": 0.28186222767446334
+    },
+    {
+     "round": 14,
+     "team": "Leeds",
+     "lose": 0.208186815623171
+    },
+    {
+     "round": 15,
+     "team": "Villa",
+     "lose": 0.2858830681795898
+    },
+    {
+     "round": 16,
+     "team": "Bournemouth",
+     "lose": 0.1863390994238885
+    },
+    {
+     "round": 17,
+     "team": "Ipswich",
+     "lose": 0.46263562798131
+    },
+    {
+     "round": 18,
+     "team": "Newcastle",
+     "lose": 0.29784816578101875
+    },
+    {
+     "round": 19,
+     "team": "Sunderland",
+     "lose": 0.22062762945197498
+    }
+   ],
+   "planCost": 0.7819797415010594,
+   "opp": "Arsenal",
+   "home": true,
+   "date": "2026-11-01"
+  },
+  {
+   "team": "Palace",
+   "win": 0.17184764295860727,
+   "draw": 0.21003600806051997,
+   "lose": 0.6181163489808729,
+   "expRounds": 5.255910057292072,
+   "pEnd": 0.08129327617066961,
+   "plan": [
+    {
+     "round": 9,
+     "team": "Palace",
+     "lose": 0.6181163489808729
+    },
+    {
+     "round": 10,
+     "team": "Liverpool",
+     "lose": 0.22686229666332894
+    },
+    {
+     "round": 11,
+     "team": "Brighton",
+     "lose": 0.20893020219692152
+    },
+    {
+     "round": 12,
+     "team": "Leeds",
+     "lose": 0.1805988163133976
+    },
+    {
+     "round": 13,
+     "team": "Forest",
+     "lose": 0.28186222767446334
+    },
+    {
+     "round": 14,
+     "team": "Bournemouth",
+     "lose": 0.17953265319554668
+    },
+    {
+     "round": 15,
+     "team": "Villa",
+     "lose": 0.2858830681795898
+    },
+    {
+     "round": 16,
+     "team": "Sunderland",
+     "lose": 0.26695912926677773
+    },
+    {
+     "round": 17,
+     "team": "Ipswich",
+     "lose": 0.46263562798131
+    },
+    {
+     "round": 18,
+     "team": "Newcastle",
+     "lose": 0.29784816578101875
+    },
+    {
+     "round": 19,
+     "team": "Fulham",
+     "lose": 0.47603149354519686
+    }
+   ],
+   "planCost": 0.8600998221600911,
+   "opp": "Spurs",
+   "home": false,
+   "date": "2026-10-31"
+  },
+  {
+   "team": "Brighton",
+   "win": 0.2063366972682657,
+   "draw": 0.21819512814575223,
+   "lose": 0.575468174585982,
+   "expRounds": 5.035300929506577,
+   "pEnd": 0.07497151699839832,
+   "plan": [
+    {
+     "round": 9,
+     "team": "Brighton",
+     "lose": 0.575468174585982
+    },
+    {
+     "round": 10,
+     "team": "Liverpool",
+     "lose": 0.22686229666332894
+    },
+    {
+     "round": 11,
+     "team": "Villa",
+     "lose": 0.25602575891617335
+    },
+    {
+     "round": 12,
+     "team": "Palace",
+     "lose": 0.25439348966608794
+    },
+    {
+     "round": 13,
+     "team": "Forest",
+     "lose": 0.28186222767446334
+    },
+    {
+     "round": 14,
+     "team": "Leeds",
+     "lose": 0.208186815623171
+    },
+    {
+     "round": 15,
+     "team": "Sunderland",
+     "lose": 0.35300599552343415
+    },
+    {
+     "round": 16,
+     "team": "Bournemouth",
+     "lose": 0.1863390994238885
+    },
+    {
+     "round": 17,
+     "team": "Ipswich",
+     "lose": 0.46263562798131
+    },
+    {
+     "round": 18,
+     "team": "Newcastle",
+     "lose": 0.29784816578101875
+    },
+    {
+     "round": 19,
+     "team": "Fulham",
+     "lose": 0.47603149354519686
+    }
+   ],
+   "planCost": 1.0807089499455858,
+   "opp": "Man City",
+   "home": false,
+   "date": "2026-10-31"
+  }
+ ],
+ "plan": [
+  {
+   "round": 9,
+   "team": "Villa",
+   "opp": "Fulham",
+   "home": true,
+   "lose": 0.2696214219759926
+  },
+  {
+   "round": 10,
+   "team": "Liverpool",
+   "opp": "Palace",
+   "home": false,
+   "lose": 0.22686229666332894
+  },
+  {
+   "round": 11,
+   "team": "Brighton",
+   "opp": "Hull",
+   "home": false,
+   "lose": 0.20893020219692152
+  },
+  {
+   "round": 12,
+   "team": "Palace",
+   "opp": "Hull",
+   "home": true,
+   "lose": 0.25439348966608794
+  },
+  {
+   "round": 13,
+   "team": "Forest",
+   "opp": "Hull",
+   "home": false,
+   "lose": 0.28186222767446334
+  },
+  {
+   "round": 14,
+   "team": "Leeds",
+   "opp": "Ipswich",
+   "home": true,
+   "lose": 0.208186815623171
+  },
+  {
+   "round": 15,
+   "team": "Newcastle",
+   "opp": "Ipswich",
+   "home": false,
+   "lose": 0.32137668369615086
+  },
+  {
+   "round": 16,
+   "team": "Bournemouth",
+   "opp": "Coventry",
+   "home": true,
+   "lose": 0.1863390994238885
+  },
+  {
+   "round": 17,
+   "team": "Fulham",
+   "opp": "Brighton",
+   "home": true,
+   "lose": 0.4392685214187018
+  },
+  {
+   "round": 18,
+   "team": "Hull",
+   "opp": "Leeds",
+   "home": true,
+   "lose": 0.4777694355754108
+  },
+  {
+   "round": 19,
+   "team": "Sunderland",
+   "opp": "Hull",
+   "home": true,
+   "lose": 0.22062762945197498
+  }
+ ],
+ "skipped": [
+  "Ipswich"
+ ],
+ "survival": {
+  "expRounds": 6.116009879452163,
+  "pEnd": 0.1338263322628339,
+  "livesLeft": {
+   "0": 0.8661736677371661,
+   "1": 0.1099595249216506,
+   "2": 0.02386680734118319
+  }
+ },
+ "grid": [
+  {
+   "team": "Villa",
+   "cells": [
+    {
+     "round": 9,
+     "opp": "Fulham",
+     "home": true,
+     "lose": 0.2696214219759926
+    },
+    {
+     "round": 10,
+     "opp": "Man Utd",
+     "home": false,
+     "lose": 0.4869550536050029
+    },
+    {
+     "round": 11,
+     "opp": "Sunderland",
+     "home": true,
+     "lose": 0.25602575891617335
+    },
+    {
+     "round": 12,
+     "opp": "Ipswich",
+     "home": false,
+     "lose": 0.3232102160316455
+    },
+    {
+     "round": 13,
+     "opp": "Everton",
+     "home": true,
+     "lose": 0.3150195807590921
+    },
+    {
+     "round": 14,
+     "opp": "Palace",
+     "home": true,
+     "lose": 0.2221077845706213
+    },
+    {
+     "round": 15,
+     "opp": "Coventry",
+     "home": false,
+     "lose": 0.2858830681795898
+    },
+    {
+     "round": 16,
+     "opp": "Chelsea",
+     "home": false,
+     "lose": 0.5780899666403123
+    },
+    {
+     "round": 17,
+     "opp": "Leeds",
+     "home": true,
+     "lose": 0.3162836324666403
+    },
+    {
+     "round": 18,
+     "opp": "Liverpool",
+     "home": true,
+     "lose": 0.423995249453143
+    },
+    {
+     "round": 19,
+     "opp": "Bournemouth",
+     "home": false,
+     "lose": 0.4341602213674513
+    }
+   ]
+  },
+  {
+   "team": "Bournemouth",
+   "cells": [
+    {
+     "round": 9,
+     "opp": "Leeds",
+     "home": true,
+     "lose": 0.273406088454911
+    },
+    {
+     "round": 10,
+     "opp": "Ipswich",
+     "home": false,
+     "lose": 0.32011510378216435
+    },
+    {
+     "round": 11,
+     "opp": "Forest",
+     "home": true,
+     "lose": 0.29663857495636703
+    },
+    {
+     "round": 12,
+     "opp": "Fulham",
+     "home": false,
+     "lose": 0.37703210453998326
+    },
+    {
+     "round": 13,
+     "opp": "Brighton",
+     "home": true,
+     "lose": 0.38527599008601265
+    },
+    {
+     "round": 14,
+     "opp": "Hull",
+     "home": true,
+     "lose": 0.17953265319554668
+    },
+    {
+     "round": 15,
+     "opp": "Arsenal",
+     "home": false,
+     "lose": 0.6952484170896341
+    },
+    {
+     "round": 16,
+     "opp": "Coventry",
+     "home": true,
+     "lose": 0.1863390994238885
+    },
+    {
+     "round": 17,
+     "opp": "Spurs",
+     "home": false,
+     "lose": 0.4829994352812585
+    },
+    {
+     "round": 18,
+     "opp": "Palace",
+     "home": false,
+     "lose": 0.326670304132952
+    },
+    {
+     "round": 19,
+     "opp": "Villa",
+     "home": true,
+     "lose": 0.3020417259552268
+    }
+   ]
+  },
+  {
+   "team": "Brighton",
+   "cells": [
+    {
+     "round": 9,
+     "opp": "Man City",
+     "home": false,
+     "lose": 0.575468174585982
+    },
+    {
+     "round": 10,
+     "opp": "Brentford",
+     "home": true,
+     "lose": 0.27287339713863473
+    },
+    {
+     "round": 11,
+     "opp": "Hull",
+     "home": false,
+     "lose": 0.20893020219692152
+    },
+    {
+     "round": 12,
+     "opp": "Newcastle",
+     "home": true,
+     "lose": 0.23408351265181296
+    },
+    {
+     "round": 13,
+     "opp": "Bournemouth",
+     "home": false,
+     "lose": 0.34631473199031476
+    },
+    {
+     "round": 14,
+     "opp": "Forest",
+     "home": false,
+     "lose": 0.3373277849333796
+    },
+    {
+     "round": 15,
+     "opp": "Everton",
+     "home": true,
+     "lose": 0.24101256833021287
+    },
+    {
+     "round": 16,
+     "opp": "Ipswich",
+     "home": true,
+     "lose": 0.16060073784855666
+    },
+    {
+     "round": 17,
+     "opp": "Fulham",
+     "home": false,
+     "lose": 0.297682056638506
+    },
+    {
+     "round": 18,
+     "opp": "Spurs",
+     "home": false,
+     "lose": 0.39550641325631325
+    },
+    {
+     "round": 19,
+     "opp": "Man Utd",
+     "home": true,
+     "lose": 0.2754990430839703
+    }
+   ]
+  },
+  {
+   "team": "Palace",
+   "cells": [
+    {
+     "round": 9,
+     "opp": "Spurs",
+     "home": false,
+     "lose": 0.6181163489808729
+    },
+    {
+     "round": 10,
+     "opp": "Liverpool",
+     "home": true,
+     "lose": 0.5308663236763418
+    },
+    {
+     "round": 11,
+     "opp": "Coventry",
+     "home": false,
+     "lose": 0.38096655940528035
+    },
+    {
+     "round": 12,
+     "opp": "Hull",
+     "home": true,
+     "lose": 0.25439348966608794
+    },
+    {
+     "round": 13,
+     "opp": "Chelsea",
+     "home": false,
+     "lose": 0.6780781119262916
+    },
+    {
+     "round": 14,
+     "opp": "Villa",
+     "home": false,
+     "lose": 0.5376619599660806
+    },
+    {
+     "round": 15,
+     "opp": "Man Utd",
+     "home": true,
+     "lose": 0.4584703751770735
+    },
+    {
+     "round": 16,
+     "opp": "Sunderland",
+     "home": false,
+     "lose": 0.4769200173421029
+    },
+    {
+     "round": 17,
+     "opp": "Arsenal",
+     "home": true,
+     "lose": 0.6736294723609629
+    },
+    {
+     "round": 18,
+     "opp": "Bournemouth",
+     "home": true,
+     "lose": 0.40631798297423405
+    },
+    {
+     "round": 19,
+     "opp": "Brentford",
+     "home": false,
+     "lose": 0.5901609517947015
+    }
+   ]
+  },
+  {
+   "team": "Fulham",
+   "cells": [
+    {
+     "round": 9,
+     "opp": "Villa",
+     "home": false,
+     "lose": 0.47183748845798706
+    },
+    {
+     "round": 10,
+     "opp": "Newcastle",
+     "home": true,
+     "lose": 0.35294537861291075
+    },
+    {
+     "round": 11,
+     "opp": "Man City",
+     "home": false,
+     "lose": 0.7151538198206953
+    },
+    {
+     "round": 12,
+     "opp": "Bournemouth",
+     "home": true,
+     "lose": 0.3542689245214302
+    },
+    {
+     "round": 13,
+     "opp": "Spurs",
+     "home": false,
+     "lose": 0.5386859584626087
+    },
+    {
+     "round": 14,
+     "opp": "Everton",
+     "home": false,
+     "lose": 0.4941173400879989
+    },
+    {
+     "round": 15,
+     "opp": "Brentford",
+     "home": true,
+     "lose": 0.40111657365195114
+    },
+    {
+     "round": 16,
+     "opp": "Leeds",
+     "home": false,
+     "lose": 0.49558010191674357
+    },
+    {
+     "round": 17,
+     "opp": "Brighton",
+     "home": true,
+     "lose": 0.4392685214187018
+    },
+    {
+     "round": 18,
+     "opp": "Arsenal",
+     "home": true,
+     "lose": 0.6232880310504102
+    },
+    {
+     "round": 19,
+     "opp": "Forest",
+     "home": false,
+     "lose": 0.47603149354519686
+    }
+   ]
+  },
+  {
+   "team": "Hull",
+   "cells": [
+    {
+     "round": 9,
+     "opp": "Ipswich",
+     "home": true,
+     "lose": 0.3573160873080032
+    },
+    {
+     "round": 10,
+     "opp": "Arsenal",
+     "home": false,
+     "lose": 0.8206680608755579
+    },
+    {
+     "round": 11,
+     "opp": "Brighton",
+     "home": true,
+     "lose": 0.5569750849728955
+    },
+    {
+     "round": 12,
+     "opp": "Palace",
+     "home": false,
+     "lose": 0.49320648921444926
+    },
+    {
+     "round": 13,
+     "opp": "Forest",
+     "home": true,
+     "lose": 0.45828508394835155
+    },
+    {
+     "round": 14,
+     "opp": "Bournemouth",
+     "home": false,
+     "lose": 0.6027712689388295
+    },
+    {
+     "round": 15,
+     "opp": "Spurs",
+     "home": true,
+     "lose": 0.5209259858839458
+    },
+    {
+     "round": 16,
+     "opp": "Man City",
+     "home": false,
+     "lose": 0.8011622125658385
+    },
+    {
+     "round": 17,
+     "opp": "Liverpool",
+     "home": true,
+     "lose": 0.5927943504033849
+    },
+    {
+     "round": 18,
+     "opp": "Leeds",
+     "home": true,
+     "lose": 0.4777694355754108
+    },
+    {
+     "round": 19,
+     "opp": "Sunderland",
+     "home": false,
+     "lose": 0.5397959268537998
+    }
+   ]
+  },
+  {
+   "team": "Ipswich",
+   "cells": [
+    {
+     "round": 9,
+     "opp": "Hull",
+     "home": false,
+     "lose": 0.3641875505254648
+    },
+    {
+     "round": 10,
+     "opp": "Bournemouth",
+     "home": true,
+     "lose": 0.41356464858955505
+    },
+    {
+     "round": 11,
+     "opp": "Spurs",
+     "home": false,
+     "lose": 0.6001600371811584
+    },
+    {
+     "round": 12,
+     "opp": "Villa",
+     "home": true,
+     "lose": 0.41012862082848117
+    },
+    {
+     "round": 13,
+     "opp": "Coventry",
+     "home": false,
+     "lose": 0.3880566229921977
+    },
+    {
+     "round": 14,
+     "opp": "Leeds",
+     "home": false,
+     "lose": 0.5580861004701547
+    },
+    {
+     "round": 15,
+     "opp": "Newcastle",
+     "home": true,
+     "lose": 0.41216097272724833
+    },
+    {
+     "round": 16,
+     "opp": "Brighton",
+     "home": false,
+     "lose": 0.6344310267684283
+    },
+    {
+     "round": 17,
+     "opp": "Brentford",
+     "home": true,
+     "lose": 0.46263562798131
+    },
+    {
+     "round": 18,
+     "opp": "Chelsea",
+     "home": true,
+     "lose": 0.5573924644374784
+    },
+    {
+     "round": 19,
+     "opp": "Arsenal",
+     "home": false,
+     "lose": 0.7856553051569986
+    }
+   ]
+  },
+  {
+   "team": "Leeds",
+   "cells": [
+    {
+     "round": 9,
+     "opp": "Bournemouth",
+     "home": false,
+     "lose": 0.4491671453187823
+    },
+    {
+     "round": 10,
+     "opp": "Spurs",
+     "home": true,
+     "lose": 0.34283738601154573
+    },
+    {
+     "round": 11,
+     "opp": "Chelsea",
+     "home": false,
+     "lose": 0.5652340730002491
+    },
+    {
+     "round": 12,
+     "opp": "Coventry",
+     "home": true,
+     "lose": 0.1805988163133976
+    },
+    {
+     "round": 13,
+     "opp": "Man City",
+     "home": false,
+     "lose": 0.6590685146947133
+    },
+    {
+     "round": 14,
+     "opp": "Ipswich",
+     "home": true,
+     "lose": 0.208186815623171
+    },
+    {
+     "round": 15,
+     "opp": "Liverpool",
+     "home": false,
+     "lose": 0.5462245538913018
+    },
+    {
+     "round": 16,
+     "opp": "Fulham",
+     "home": true,
+     "lose": 0.2525965809118131
+    },
+    {
+     "round": 17,
+     "opp": "Villa",
+     "home": false,
+     "lose": 0.41785436439843976
+    },
+    {
+     "round": 18,
+     "opp": "Hull",
+     "home": false,
+     "lose": 0.2662933928372047
+    },
+    {
+     "round": 19,
+     "opp": "Everton",
+     "home": true,
+     "lose": 0.3038014105141828
+    }
+   ]
+  },
+  {
+   "team": "Liverpool",
+   "cells": [
+    {
+     "round": 9,
+     "opp": "Arsenal",
+     "home": true,
+     "lose": 0.4194977843426883
+    },
+    {
+     "round": 10,
+     "opp": "Palace",
+     "home": false,
+     "lose": 0.22686229666332894
+    },
+    {
+     "round": 11,
+     "opp": "Man Utd",
+     "home": true,
+     "lose": 0.2472126971522745
+    },
+    {
+     "round": 12,
+     "opp": "Everton",
+     "home": false,
+     "lose": 0.3209424136285038
+    },
+    {
+     "round": 13,
+     "opp": "Sunderland",
+     "home": true,
+     "lose": 0.1702659306311615
+    },
+    {
+     "round": 14,
+     "opp": "Chelsea",
+     "home": false,
+     "lose": 0.4496517219773826
+    },
+    {
+     "round": 15,
+     "opp": "Leeds",
+     "home": true,
+     "lose": 0.21620522133529133
+    },
+    {
+     "round": 16,
+     "opp": "Spurs",
+     "home": true,
+     "lose": 0.24690543757518205
+    },
+    {
+     "round": 17,
+     "opp": "Hull",
+     "home": false,
+     "lose": 0.18572657088358477
+    },
+    {
+     "round": 18,
+     "opp": "Villa",
+     "home": false,
+     "lose": 0.31086085265003943
+    },
+    {
+     "round": 19,
+     "opp": "Coventry",
+     "home": true,
+     "lose": 0.12165974840365125
+    }
+   ]
+  },
+  {
+   "team": "Newcastle",
+   "cells": [
+    {
+     "round": 9,
+     "opp": "Everton",
+     "home": true,
+     "lose": 0.3157894736842105
+    },
+    {
+     "round": 10,
+     "opp": "Fulham",
+     "home": false,
+     "lose": 0.37839315411430974
+    },
+    {
+     "round": 11,
+     "opp": "Arsenal",
+     "home": true,
+     "lose": 0.571074446976325
+    },
+    {
+     "round": 12,
+     "opp": "Brighton",
+     "home": false,
+     "lose": 0.5207140687738392
+    },
+    {
+     "round": 13,
+     "opp": "Man Utd",
+     "home": true,
+     "lose": 0.3532205342519967
+    },
+    {
+     "round": 14,
+     "opp": "Sunderland",
+     "home": true,
+     "lose": 0.25443007539630363
+    },
+    {
+     "round": 15,
+     "opp": "Ipswich",
+     "home": false,
+     "lose": 0.32137668369615086
+    },
+    {
+     "round": 16,
+     "opp": "Brentford",
+     "home": false,
+     "lose": 0.48156338844496166
+    },
+    {
+     "round": 17,
+     "opp": "Man City",
+     "home": true,
+     "lose": 0.5396490975287773
+    },
+    {
+     "round": 18,
+     "opp": "Forest",
+     "home": true,
+     "lose": 0.29784816578101875
+    },
+    {
+     "round": 19,
+     "opp": "Chelsea",
+     "home": false,
+     "lose": 0.5760411937957639
+    }
+   ]
+  },
+  {
+   "team": "Forest",
+   "cells": [
+    {
+     "round": 9,
+     "opp": "Brentford",
+     "home": false,
+     "lose": 0.46198231735691014
+    },
+    {
+     "round": 10,
+     "opp": "Man City",
+     "home": true,
+     "lose": 0.5481222972059234
+    },
+    {
+     "round": 11,
+     "opp": "Bournemouth",
+     "home": false,
+     "lose": 0.4404995099102926
+    },
+    {
+     "round": 12,
+     "opp": "Chelsea",
+     "home": true,
+     "lose": 0.44926843365466546
+    },
+    {
+     "round": 13,
+     "opp": "Hull",
+     "home": false,
+     "lose": 0.28186222767446334
+    },
+    {
+     "round": 14,
+     "opp": "Brighton",
+     "home": true,
+     "lose": 0.3947793473446837
+    },
+    {
+     "round": 15,
+     "opp": "Sunderland",
+     "home": false,
+     "lose": 0.378330726973342
+    },
+    {
+     "round": 16,
+     "opp": "Everton",
+     "home": true,
+     "lose": 0.3206049252160003
+    },
+    {
+     "round": 17,
+     "opp": "Man Utd",
+     "home": false,
+     "lose": 0.4933930399016216
+    },
+    {
+     "round": 18,
+     "opp": "Newcastle",
+     "home": false,
+     "lose": 0.43907286172174886
+    },
+    {
+     "round": 19,
+     "opp": "Fulham",
+     "home": true,
+     "lose": 0.2676567585986093
+    }
+   ]
+  },
+  {
+   "team": "Sunderland",
+   "cells": [
+    {
+     "round": 9,
+     "opp": "Coventry",
+     "home": false,
+     "lose": 0.3103551775887944
+    },
+    {
+     "round": 10,
+     "opp": "Chelsea",
+     "home": true,
+     "lose": 0.5034824684428122
+    },
+    {
+     "round": 11,
+     "opp": "Villa",
+     "home": false,
+     "lose": 0.4910601732036993
+    },
+    {
+     "round": 12,
+     "opp": "Spurs",
+     "home": true,
+     "lose": 0.4122066385427276
+    },
+    {
+     "round": 13,
+     "opp": "Liverpool",
+     "home": false,
+     "lose": 0.6180435360246248
+    },
+    {
+     "round": 14,
+     "opp": "Newcastle",
+     "home": false,
+     "lose": 0.4931582794812493
+    },
+    {
+     "round": 15,
+     "opp": "Forest",
+     "home": true,
+     "lose": 0.35300599552343415
+    },
+    {
+     "round": 16,
+     "opp": "Palace",
+     "home": true,
+     "lose": 0.26695912926677773
+    },
+    {
+     "round": 17,
+     "opp": "Everton",
+     "home": false,
+     "lose": 0.5027225907105072
+    },
+    {
+     "round": 18,
+     "opp": "Man Utd",
+     "home": false,
+     "lose": 0.5476369937107727
+    },
+    {
+     "round": 19,
+     "opp": "Hull",
+     "home": true,
+     "lose": 0.22062762945197498
+    }
+   ]
+  }
+ ],
+ "ratings": [
+  {
+   "team": "Arsenal",
+   "r": 1.0334657687085114
+  },
+  {
+   "team": "Man City",
+   "r": 0.9061596341599618
+  },
+  {
+   "team": "Chelsea",
+   "r": 0.5094458180671387
+  },
+  {
+   "team": "Liverpool",
+   "r": 0.4324413701032151
+  },
+  {
+   "team": "Brighton",
+   "r": 0.28580666403861393
+  },
+  {
+   "team": "Man Utd",
+   "r": 0.1423167803904683
+  },
+  {
+   "team": "Spurs",
+   "r": 0.14066503247716014
+  },
+  {
+   "team": "Brentford",
+   "r": 0.12912304200350264
+  },
+  {
+   "team": "Leeds",
+   "r": -0.03206875497453435
+  },
+  {
+   "team": "Everton",
+   "r": -0.03792042757717799
+  },
+  {
+   "team": "Bournemouth",
+   "r": -0.0703889117810424
+  },
+  {
+   "team": "Newcastle",
+   "r": -0.07617948834806214
+  },
+  {
+   "team": "Villa",
+   "r": -0.08457401650623944
+  },
+  {
+   "team": "Forest",
+   "r": -0.11033626749021837
+  },
+  {
+   "team": "Fulham",
+   "r": -0.293471128717097
+  },
+  {
+   "team": "Sunderland",
+   "r": -0.32789332465760374
+  },
+  {
+   "team": "Palace",
+   "r": -0.51459016667716
+  },
+  {
+   "team": "Ipswich",
+   "r": -0.5445493683153393
+  },
+  {
+   "team": "Coventry",
+   "r": -0.7209554341922192
+  },
+  {
+   "team": "Hull",
+   "r": -0.7664968777788427
+  }
+ ],
+ "model": {
+  "homeAdv": 0.2721633085479397,
+  "drawWidth": 0.551245735151333,
+  "fitError": 0.014755679392891637,
+  "calibMatches": 30
+ },
+ "stress": {
+  "scenarios": [
+   {
+    "label": "Home advantage lower",
+    "pick": "Villa"
+   },
+   {
+    "label": "Home advantage higher",
+    "pick": "Sunderland"
+   },
+   {
+    "label": "Weaker pull toward Opta",
+    "pick": "Villa"
+   },
+   {
+    "label": "Stronger pull toward Opta",
+    "pick": "Newcastle"
+   }
+  ],
+  "monteCarlo": [
+   {
+    "team": "Villa",
+    "share": 0.48333333333333334
+   },
+   {
+    "team": "Bournemouth",
+    "share": 0.2
+   },
+   {
+    "team": "Sunderland",
+    "share": 0.15
+   },
+   {
+    "team": "Newcastle",
+    "share": 0.15
+   },
+   {
+    "team": "Ipswich",
+    "share": 0.016666666666666666
+   }
+  ],
+  "runs": 60
+ },
+ "sources": [
+  {
+   "title": "Sports betting odds, week 9 (RG.org)",
+   "url": "https://rg.org/news/soccer/liverpool-vs-arsenal-chelsea-vs-man-utd-premier-league-week-9-odds-2026"
+  },
+  {
+   "title": "openfootball 2026-27 fixtures",
+   "url": "https://github.com/openfootball/football.json"
+  },
+  {
+   "title": "Opta preseason projection (SI)",
+   "url": "https://www.si.com/soccer/supercomputer-predicts-final-2026-27-premier-league-table-arsenal-perfect-start"
+  },
+  {
+   "title": "Hull 1\u20131 Brentford (theScore)",
+   "url": "https://www.thescore.com/epl/event/98338"
+  }
+ ]
+}

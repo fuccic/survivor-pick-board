@@ -1,0 +1,356 @@
+<title>Survivor Pick Board</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a matchday teamsheet — one pick card up top, the ranked bench beside it, the season fixture board below. */
+:root{
+  --bg:#EDF0F3; --surface:#FFFFFF; --sunken:#E3E8ED; --ink:#15202B; --muted:#5A6977; --line:#CDD5DD;
+  --accent:#1F4FB8; --accent-soft:#DCE5F8;
+  --win:#2F7D52; --draw:#9AA7B4; --lose:#C2412F;
+  --heat-lo:#E2F0E6; --heat-mid:#F7E8C9; --heat-hi:#F4CFC6;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F151C; --surface:#18212B; --sunken:#121A22; --ink:#E6ECF2; --muted:#93A2B1; --line:#2A3643;
+  --accent:#7FA4F0; --accent-soft:#1E2C47; --win:#5DBB86; --draw:#5F6E7C; --lose:#EC7A66;
+  --heat-lo:#183126; --heat-mid:#3A3220; --heat-hi:#45231F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F151C; --surface:#18212B; --sunken:#121A22; --ink:#E6ECF2; --muted:#93A2B1; --line:#2A3643;
+  --accent:#7FA4F0; --accent-soft:#1E2C47; --win:#5DBB86; --draw:#5F6E7C; --lose:#EC7A66;
+  --heat-lo:#183126; --heat-mid:#3A3220; --heat-hi:#45231F; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1120px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:28px}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.01em;line-height:1.05;margin:0;text-wrap:balance}
+h2{font-size:26px;text-transform:uppercase}
+.eyebrow{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:13px;color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+header.top{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;border-bottom:3px solid var(--ink);padding-bottom:14px}
+header.top h1{font-size:clamp(34px,6vw,52px);text-transform:uppercase}
+.status{display:flex;flex-wrap:wrap;gap:22px;align-items:end}
+.stat{display:grid;gap:2px}
+.stat b{font-family:var(--display);font-size:26px;line-height:1}
+.lives{display:flex;gap:5px}
+.life{width:16px;height:22px;border-radius:3px;background:var(--lose)}
+.life.gone{background:transparent;border:2px dashed var(--line)}
+
+.top-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;align-items:start}
+@media (max-width:860px){.top-grid{grid-template-columns:1fr}}
+
+.pick{background:var(--surface);border:1px solid var(--line);border-top:6px solid var(--accent);border-radius:6px;padding:22px;display:grid;gap:18px}
+.pick .match{font-family:var(--display);font-size:clamp(40px,7vw,58px);text-transform:uppercase;line-height:.95}
+.pick .match small{display:block;font-size:20px;color:var(--muted);font-weight:600;margin-top:6px}
+.bigrow{display:flex;flex-wrap:wrap;gap:26px}
+.big b{display:block;font-family:var(--display);font-size:46px;line-height:1}
+.big b.lose{color:var(--lose)} .big b.safe{color:var(--win)}
+.wdl{display:flex;height:12px;border-radius:2px;overflow:hidden;background:var(--sunken)}
+.wdl span{display:block;height:100%}
+.wdl .w{background:var(--win)} .wdl .d{background:var(--draw)} .wdl .l{background:var(--lose)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.why{margin:0;max-width:62ch}
+.confidence{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;background:var(--sunken);border:1px solid var(--line);white-space:nowrap}
+.chip.hit{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+
+.bench{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.bench-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;padding:16px 18px 10px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+th{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:12.5px;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+.opt{cursor:pointer}
+.opt:hover td{background:var(--sunken)}
+.opt.sel td{background:var(--accent-soft)}
+.opt td:first-child{box-shadow:inset 4px 0 0 transparent}
+.opt.sel td:first-child{box-shadow:inset 4px 0 0 var(--accent)}
+.opt:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.team{font-weight:600;white-space:nowrap}
+.ha{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:4px}
+.r{text-align:right}
+.mini{min-width:110px}
+.cost{font-family:var(--mono);font-size:13px}
+.tag{font-size:11.5px;font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-weight:600;padding:2px 7px;border-radius:3px;background:var(--accent);color:var(--bg);margin-left:6px}
+
+.section{display:grid;gap:14px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap}
+.plan{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.slot{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;display:grid;gap:4px;position:relative}
+.slot.now{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.slot .rd{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--muted)}
+.slot .tm{font-family:var(--display);font-size:24px;font-weight:700;text-transform:uppercase;line-height:1}
+.slot .vs{font-size:13px;color:var(--muted)}
+.risk{font-family:var(--mono);font-size:13px;font-weight:500}
+.risk.lo{color:var(--win)} .risk.mid{color:#B07A12} .risk.hi{color:var(--lose)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .risk.mid{color:#E2B355}}
+:root[data-theme="dark"] .risk.mid{color:#E2B355}
+.skip{font-size:14px}
+
+.heat td,.heat th{padding:0;border:0}
+.heat{border-collapse:separate;border-spacing:3px;min-width:720px}
+.heat th{padding:4px 6px;text-align:center}
+.heat th.rowh{text-align:left;font-family:var(--body);text-transform:none;letter-spacing:0;font-size:13.5px;color:var(--ink);font-weight:600;white-space:nowrap;padding-right:10px}
+.cell{display:grid;place-items:center;height:44px;border-radius:3px;font-size:11.5px;line-height:1.15;text-align:center;color:var(--ink)}
+.cell .p{font-family:var(--mono);font-weight:500;font-size:12px}
+.cell .o{color:var(--muted);font-size:11px}
+.cell.inplan{outline:2px solid var(--accent);outline-offset:-2px}
+
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:12px}
+.dist{display:grid;gap:8px}
+.drow{display:grid;grid-template-columns:120px minmax(0,1fr) 54px;gap:10px;align-items:center;font-size:14px}
+.dbar{height:10px;background:var(--sunken);border-radius:2px;overflow:hidden}
+.dbar span{display:block;height:100%;background:var(--accent)}
+.hist{display:grid;gap:0}
+.hrow{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);align-items:center}
+.hrow:last-child{border-bottom:0}
+.res{font-family:var(--display);font-weight:700;font-size:15px;width:26px;height:26px;display:grid;place-items:center;border-radius:3px;color:var(--bg)}
+.res.W{background:var(--win)} .res.D{background:var(--draw)} .res.L{background:var(--lose)}
+.used{display:flex;flex-wrap:wrap;gap:6px}
+.used .chip{text-decoration:line-through;color:var(--muted)}
+
+.method{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px;display:grid;gap:16px}
+.method ol{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:14px;max-width:72ch}
+.method li{counter-increment:s;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px}
+.method li::before{content:counter(s);font-family:var(--display);font-weight:700;font-size:22px;color:var(--accent);line-height:1.1}
+.method li b{display:block}
+.rules{display:flex;flex-wrap:wrap;gap:6px}
+footer{font-size:13px;color:var(--muted);display:grid;gap:6px;border-top:1px solid var(--line);padding-top:14px}
+footer a{color:var(--accent)}
+.foot-links{display:flex;flex-wrap:wrap;gap:6px 16px}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow" id="sub">Premier League survivor · 2026–27</div>
+      <h1>Survivor Pick Board</h1>
+    </div>
+    <div class="status">
+      <div class="stat"><span class="eyebrow">Round</span><b class="num" id="st-round"></b></div>
+      <div class="stat"><span class="eyebrow">Lives</span><div class="lives" id="st-lives" aria-label=""></div></div>
+      <div class="stat"><span class="eyebrow">Teams left</span><b class="num" id="st-left"></b></div>
+      <div class="stat"><span class="eyebrow">Updated</span><b class="num" id="st-upd" style="font-size:18px"></b></div>
+    </div>
+  </header>
+
+  <div class="top-grid">
+    <section class="pick" aria-labelledby="pick-h">
+      <div class="eyebrow" id="pick-h">Selected pick</div>
+      <div class="match" id="p-match"></div>
+      <div class="bigrow">
+        <div class="big"><span class="eyebrow">Chance of losing</span><b class="lose num" id="p-lose"></b></div>
+        <div class="big"><span class="eyebrow">Survive the week</span><b class="safe num" id="p-safe"></b></div>
+      </div>
+      <div style="display:grid;gap:6px">
+        <div class="wdl" id="p-wdl"></div>
+        <div class="legend"><span><i style="background:var(--win)"></i>Win <span class="num" id="p-w"></span></span><span><i style="background:var(--draw)"></i>Draw (free) <span class="num" id="p-d"></span></span><span><i style="background:var(--lose)"></i>Loss <span class="num" id="p-l"></span></span></div>
+      </div>
+      <p class="why" id="p-why"></p>
+      <div class="confidence">
+        <span class="eyebrow">Stress test · which team comes out on top</span>
+        <div class="chips" id="p-stress"></div>
+        <div class="chips" id="p-mc"></div>
+      </div>
+    </section>
+
+    <section class="bench" aria-labelledby="bench-h">
+      <div class="bench-head">
+        <h2 id="bench-h">This week's options</h2>
+        <span class="muted" style="font-size:13px">Tap a row to see its season plan</span>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Team</th><th>Opponent</th><th class="mini">Win · draw · loss</th><th class="r">Lose</th><th class="r">Plan cost</th></tr></thead>
+          <tbody id="opts"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <section class="section" aria-labelledby="plan-h">
+    <div class="section-head">
+      <h2 id="plan-h">Season plan to round 19</h2>
+      <span class="skip muted" id="plan-skip"></span>
+    </div>
+    <div class="plan" id="plan"></div>
+  </section>
+
+  <section class="section" aria-labelledby="heat-h">
+    <div class="section-head">
+      <h2 id="heat-h">Fixture board</h2>
+      <span class="muted" style="font-size:13px">Chance each unused team loses, by round. Outlined cells are the selected plan.</span>
+    </div>
+    <div class="tablewrap"><table class="heat" id="heat"></table></div>
+  </section>
+
+  <div class="two">
+    <section class="panel" aria-labelledby="out-h">
+      <h2 id="out-h">Outlook</h2>
+      <div class="muted" style="font-size:14px" id="out-sum"></div>
+      <div class="dist" id="dist"></div>
+    </section>
+    <section class="panel" aria-labelledby="hist-h">
+      <h2 id="hist-h">Your picks</h2>
+      <div class="hist" id="hist"></div>
+      <span class="eyebrow">Used this half</span>
+      <div class="used" id="used"></div>
+    </section>
+  </div>
+
+  <section class="method" aria-labelledby="how-h">
+    <h2 id="how-h">How we pick</h2>
+    <div class="rules" id="rules"></div>
+    <ol>
+      <li><div><b>Only a loss hurts.</b>Draws are free in this pool, so every team is judged on its chance of losing, not its chance of winning. A dogged team that draws a lot can be a better pick than a flashy one.</div></li>
+      <li><div><b>Start from the market.</b>This week's chances come straight from bookmaker prices, with the bookies' margin taken out. Prices already reflect injuries, form and team news.</div></li>
+      <li><div><b>Rate every team for later rounds.</b>Team strengths are fitted to the last three rounds of prices (recent weeks count more), lightly pulled toward Opta's season projection so one odd price can't swing a rating. Those strengths give a win, draw and loss chance for every future fixture.</div></li>
+      <li><div><b>Plan the whole half, not just this week.</b>Each unused team goes to at most one round from now to round 19, arranged to keep you alive as long as possible. The safest team this week is not always the right pick if it is the only good option you have for a hard round later.</div></li>
+      <li><div><b>Rank this week by the full plan.</b>For each option, we lock it in now and rebuild the best plan around it. "Plan cost" is how many expected rounds of survival you give up compared with the best start.</div></li>
+      <li><div><b>Stress-test before trusting it.</b>The top pick is re-checked with a stronger and weaker home advantage, more and less weight on Opta, and 60 runs with random noise on every rating. A pick that wins most of these is solid; a split result means it's a close call.</div></li>
+      <li><div><b>Refresh every week.</b>After each round: update results and lives, pull the new prices, refit, and replan. Ask Claude for "this week's survivor pick" to refresh this page.</div></li>
+    </ol>
+  </section>
+
+  <footer>
+    <div id="f-model"></div>
+    <div class="foot-links" id="f-src"></div>
+  </footer>
+</div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(function(){
+  var D = JSON.parse(document.getElementById('data').textContent);
+  var $ = function(id){return document.getElementById(id)};
+  var pct = function(x){return Math.round(x*100)+'%'};
+  var esc = function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+  var riskClass = function(p){return p<0.25?'lo':(p<0.38?'mid':'hi')};
+  var fixtureOf = {}; D.grid.forEach(function(g){g.cells.forEach(function(c){fixtureOf[g.team+'|'+c.round]=c})});
+  var dateFmt = function(s){var d=new Date(s+'T12:00:00');return d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})};
+
+  $('st-round').textContent = D.round;
+  $('st-left').textContent = D.available.length;
+  $('st-upd').textContent = new Date(D.updated+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  var lv = $('st-lives'); lv.setAttribute('aria-label', D.lives+' of '+D.livesStart+' lives left');
+  for (var i=0;i<D.livesStart;i++){var s=document.createElement('span');s.className='life'+(i>=D.lives?' gone':'');lv.appendChild(s)}
+  $('sub').textContent = 'Premier League survivor · 2026–27 · '+D.entrants+' entrants';
+
+  var best = D.thisWeek[0];
+  var sel = best.team;
+  try { var saved = localStorage.getItem('sel-r'+D.round); if (saved && D.thisWeek.some(function(r){return r.team===saved})) sel = saved; } catch(e){}
+
+  // options table
+  var tb = $('opts');
+  D.thisWeek.forEach(function(r, i){
+    var tr = document.createElement('tr'); tr.className='opt'; tr.tabIndex=0; tr.dataset.team=r.team;
+    tr.innerHTML = '<td><span class="team">'+esc(r.team)+'</span>'+(i===0?'<span class="tag">Pick</span>':'')+'</td>'+
+      '<td class="muted" style="white-space:nowrap">'+(r.home?'v ':'at ')+esc(r.opp)+'</td>'+
+      '<td class="mini"><div class="wdl"><span class="w" style="width:'+r.win*100+'%"></span><span class="d" style="width:'+r.draw*100+'%"></span><span class="l" style="width:'+r.lose*100+'%"></span></div></td>'+
+      '<td class="r"><span class="risk '+riskClass(r.lose)+'">'+pct(r.lose)+'</span></td>'+
+      '<td class="r cost">'+(r.planCost<0.005?'best':'−'+r.planCost.toFixed(2))+'</td>';
+    tr.addEventListener('click', function(){select(r.team)});
+    tr.addEventListener('keydown', function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();select(r.team)}});
+    tb.appendChild(tr);
+  });
+
+  // stress
+  var sc = $('p-stress');
+  D.stress.scenarios.forEach(function(s){var c=document.createElement('span');c.className='chip'+(s.pick===best.team?' hit':'');c.textContent=s.label+': '+s.pick;sc.appendChild(c)});
+  var mc = $('p-mc');
+  D.stress.monteCarlo.forEach(function(m){var c=document.createElement('span');c.className='chip'+(m.team===best.team?' hit':'');c.textContent=m.team+' '+pct(m.share)+' of '+D.stress.runs+' noisy runs';mc.appendChild(c)});
+
+  // history
+  var h = $('hist');
+  D.history.forEach(function(x){
+    var row=document.createElement('div');row.className='hrow';
+    var res = x.result && x.result.length===1 ? '<span class="res '+x.result+'">'+x.result+'</span>' : '<span class="muted" style="font-size:13px">'+esc(x.result||'')+'</span>';
+    row.innerHTML='<span class="eyebrow">R'+esc(x.round)+'</span><span>'+(x.opp?'<b>'+esc(x.team)+'</b> '+(x.home?'v ':'at ')+esc(x.opp)+' <span class="num muted">'+esc(x.score)+'</span>':esc(x.team))+'</span>'+res;
+    h.appendChild(row);
+  });
+  D.used.forEach(function(t){var c=document.createElement('span');c.className='chip';c.textContent=t;$('used').appendChild(c)});
+  D.rules.forEach(function(t){var c=document.createElement('span');c.className='chip';c.textContent=t;$('rules').appendChild(c)});
+
+  // heat grid skeleton
+  var rounds = D.grid[0].cells.map(function(c){return c.round});
+  var heat = $('heat');
+  var thead = '<thead><tr><th></th>'+rounds.map(function(r){return '<th class="eyebrow">R'+r+'</th>'}).join('')+'</tr></thead>';
+  var order = D.thisWeek.map(function(r){return r.team});
+  var body = '<tbody>'+order.map(function(t){
+    var g = D.grid.filter(function(x){return x.team===t})[0];
+    return '<tr><th class="rowh" scope="row">'+esc(t)+'</th>'+g.cells.map(function(c){
+      var p=c.lose, bg = p<0.25?'var(--heat-lo)':(p<0.38?'var(--heat-mid)':'var(--heat-hi)');
+      return '<td><div class="cell" data-k="'+esc(t)+'|'+c.round+'" style="background:'+bg+'" title="'+esc(t)+' '+(c.home?'v ':'at ')+esc(c.opp)+': '+pct(p)+' lose"><span><span class="p">'+pct(p)+'</span><br><span class="o">'+(c.home?'':'@')+esc(c.opp.slice(0,3))+'</span></span></div></td>';
+    }).join('')+'</tr>';
+  }).join('')+'</tbody>';
+  heat.innerHTML = thead+body;
+
+  function survival(plan){
+    var L=D.lives, dist=new Array(L+1).fill(0); dist[L]=1; var tot=0;
+    plan.forEach(function(s){var p=s.lose, n=new Array(L+1).fill(0);
+      for(var k=1;k<=L;k++){n[k]+=dist[k]*(1-p);n[k-1]+=dist[k]*p} n[0]+=dist[0]; dist=n; tot+=1-dist[0]});
+    return {exp:tot, dist:dist};
+  }
+
+  function select(team){
+    sel = team; try{localStorage.setItem('sel-r'+D.round, team)}catch(e){}
+    var r = D.thisWeek.filter(function(x){return x.team===team})[0];
+    [].forEach.call(tb.children,function(tr){tr.classList.toggle('sel', tr.dataset.team===team); tr.setAttribute('aria-selected', tr.dataset.team===team)});
+    $('pick-h').textContent = team===best.team ? 'Round '+D.round+' pick' : 'Alternative · round '+D.round;
+    $('p-match').innerHTML = esc(r.team)+' <span class="muted">'+(r.home?'v':'at')+'</span> '+esc(r.opp)+'<small>'+dateFmt(r.date)+(r.home?' · home':' · away')+'</small>';
+    $('p-lose').textContent = pct(r.lose); $('p-safe').textContent = pct(1-r.lose);
+    $('p-wdl').innerHTML = '<span class="w" style="width:'+r.win*100+'%"></span><span class="d" style="width:'+r.draw*100+'%"></span><span class="l" style="width:'+r.lose*100+'%"></span>';
+    $('p-w').textContent=pct(r.win); $('p-d').textContent=pct(r.draw); $('p-l').textContent=pct(r.lose);
+    var safest = D.thisWeek.slice().sort(function(a,b){return a.lose-b.lose})[0];
+    var why;
+    if (team===best.team){
+      var second = D.thisWeek[1];
+      var lead;
+      if (safest.team===team) lead = 'It is also the lowest loss chance on the board this week. ';
+      else if (r.lose-safest.lose < 0.02) lead = 'It is level with '+esc(safest.team)+' for the lowest loss chance this week, and '+esc(safest.team)+' is worth more later. ';
+      else lead = esc(safest.team)+' is safer this week ('+pct(safest.lose)+'), but you need it more later. ';
+      why = 'Best start for the rest of the half. '+lead+
+            'It\'s a close call with '+esc(second.team)+' (only '+second.planCost.toFixed(2)+' expected rounds behind), so check the stress test below.';
+    } else {
+      why = 'Using '+esc(team)+' now gives up about '+r.planCost.toFixed(2)+' expected rounds of survival compared with '+esc(best.team)+'. '+
+            (r.lose<best.lose?'It is safer this week, but you would need it more later.':'It is also riskier this week.');
+    }
+    $('p-why').innerHTML = why;
+
+    // plan
+    var pl = $('plan'); pl.innerHTML='';
+    r.plan.forEach(function(s){
+      var f = fixtureOf[s.team+'|'+s.round];
+      var d=document.createElement('div'); d.className='slot'+(s.round===D.round?' now':'');
+      d.innerHTML='<span class="rd">Round '+s.round+'</span><span class="tm">'+esc(s.team)+'</span><span class="vs">'+(f.home?'v ':'at ')+esc(f.opp)+'</span><span class="risk '+riskClass(s.lose)+'">'+pct(s.lose)+' lose</span>';
+      pl.appendChild(d);
+    });
+    var inPlan = r.plan.map(function(s){return s.team});
+    var skipped = D.available.filter(function(t){return inPlan.indexOf(t)<0});
+    $('plan-skip').textContent = skipped.length ? 'Not needed this half: '+skipped.join(', ') : '';
+    [].forEach.call(heat.querySelectorAll('.cell'),function(c){c.classList.remove('inplan')});
+    r.plan.forEach(function(s){var c=heat.querySelector('[data-k="'+s.team+'|'+s.round+'"]'); if(c) c.classList.add('inplan')});
+
+    // outlook
+    var sv = survival(r.plan);
+    $('out-sum').innerHTML = 'With this plan you survive about <b class="num">'+sv.exp.toFixed(1)+'</b> of the '+r.plan.length+' remaining rounds on average. Nobody in a '+D.entrants+'-player pool is likely to run the table, so the aim is to outlast the field.';
+    var dd = $('dist'); dd.innerHTML='';
+    var rowsD = [];
+    for (var k=D.lives;k>=1;k--) rowsD.push({label:'Through R'+D.lastRound+', '+k+' '+(k===1?'life':'lives'), p:sv.dist[k]});
+    rowsD.push({label:'Out before R'+D.lastRound, p:sv.dist[0]});
+    rowsD.forEach(function(x){var e=document.createElement('div');e.className='drow';e.innerHTML='<span>'+x.label+'</span><div class="dbar"><span style="width:'+(x.p*100)+'%"></span></div><span class="num r">'+(x.p*100).toFixed(1)+'%</span>';dd.appendChild(e)});
+  }
+  select(sel);
+
+  $('f-model').textContent = 'Model: '+D.model.calibMatches+' priced matches, home edge '+D.model.homeAdv.toFixed(2)+', average gap to bookmaker prices '+(D.model.fitError*100).toFixed(1)+' points. Not betting advice.';
+  D.sources.forEach(function(s){var a=document.createElement('a');a.href=s.url;a.target='_blank';a.rel='noopener';a.textContent=s.title;$('f-src').appendChild(a)});
+})();
+</script>
